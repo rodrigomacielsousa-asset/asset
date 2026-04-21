@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Global Helpers ---
+    function isSignedIn() { return request.auth != null; }
+    function isEmailVerified() { return request.auth.token.email_verified == true; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    // --- Validation Blueprints ---
+    function isValidUser(data) {
+      return data.uid is string && data.uid.size() <= 128 &&
+             data.email is string && data.email.size() <= 128 &&
+             data.role in ['ADMINISTRADOR', 'GESTOR', 'ANALISTA', 'USUARIO'];
+    }
+
+    function isValidAsset(data) {
+      return data.id is string && data.id.size() <= 64 &&
+             data.name is string && data.name.size() <= 200 &&
+             data.category is string &&
+             data.status is string &&
+             data.company is string;
+    }
+
+    // --- Match Groups ---
+
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || getUserRole() in ['ADMINISTRADOR', 'GESTOR']);
+      allow list: if isSignedIn() && (
+        resource.data.uid == request.auth.uid || 
+        (request.auth.token.email != null && resource.data.email == request.auth.token.email) ||
+        getUserRole() in ['ADMINISTRADOR', 'GESTOR']
+      );
+      
+      allow create: if isSignedIn() && request.auth.uid == userId && 
+                       isValidUser(incoming()) && 
+                       incoming().uid == userId &&
+                       (incoming().role == 'USUARIO' || (request.auth.token.email == 'rodrigomaciel.sousa@gmail.com' && request.auth.token.email_verified == true));
+                       
+      allow update: if isSignedIn() && request.auth.uid == userId && (
+                       (request.auth.token.email == 'rodrigomaciel.sousa@gmail.com' && request.auth.token.email_verified == true) ||
+                       (incoming().uid == existing().uid &&
+                        incoming().role == existing().role && 
+                        incoming().diff(existing()).affectedKeys().hasOnly(['name', 'avatar', 'lastLogin', 'companyId']))
+                     );
+      allow delete: if isSignedIn() && getUserRole() == 'ADMINISTRADOR';
+    }
+
+    match /assets/{assetId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && getUserRole() in ['ADMINISTRADOR', 'GESTOR'] && isValidAsset(incoming());
+      
+      allow update: if isSignedIn() && (
+        (getUserRole() in ['ADMINISTRADOR', 'GESTOR'] && isValidAsset(incoming()) && incoming().id == existing().id) ||
+        (getUserRole() == 'ANALISTA' && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'responsible']) && isEmailVerified())
+      );
+    }
+
+    match /movements/{movementId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isEmailVerified();
+      allow update: if isSignedIn() && (
+        getUserRole() in ['ADMINISTRADOR', 'GESTOR'] ||
+        (existing().requesterId == request.auth.uid && incoming().diff(existing()).affectedKeys().hasOnly(['status']))
+      );
+    }
+
+    match /companies/{companyId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && getUserRole() == 'ADMINISTRADOR';
+    }
+  }
+}

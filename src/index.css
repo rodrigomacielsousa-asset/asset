@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-primary: #60a5fa;
+  --color-danger: #f87171;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-muted: var(--muted);
+}
+
+:root {
+  --bg: #0b1220;
+  --panel: #111a2e;
+  --line: #22304f;
+  --muted: #9ca3af;
+  --text-base: #f3f4f6;
+}
+
+:root.light {
+  --bg: #f5f6f7;
+  --panel: #ffffff;
+  --line: #d9dce0;
+  --muted: #6a6d70;
+  --text-base: #32363a;
+  --primary: #0854a0;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-[color:var(--text-base)] antialiased selection:bg-primary/30 transition-colors duration-300;
+  }
+
+  input, select, textarea {
+    @apply bg-bg border-line border rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-[color:var(--text-base)];
+  }
+
+  button {
+    @apply transition-all active:scale-95;
+  }
+}
+
+.glass {
+  @apply bg-panel/50 backdrop-blur-md border-line border;
+}
+
+.card-gradient {
+  background: var(--panel);
+}

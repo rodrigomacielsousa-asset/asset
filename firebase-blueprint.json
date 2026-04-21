@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "Asset": {
+      "title": "Ativo Patrimonial",
+      "description": "Representa um bem imobilizado da empresa.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID único do ativo" },
+        "name": { "type": "string", "description": "Nome do ativo" },
+        "category": { "type": "string", "description": "Categoria do ativo" },
+        "status": { "type": "string", "description": "Status atual (ATIVO, BAIXADO, etc)" },
+        "location": { "type": "string", "description": "Localização física" },
+        "company": { "type": "string", "description": "Empresa proprietária" },
+        "branch": { "type": "string", "description": "Filial" },
+        "costCenter": { "type": "string", "description": "Centro de custo" },
+        "responsible": { "type": "string", "description": "Responsável" },
+        "acquisitionDate": { "type": "string", "format": "date", "description": "Data de aquisição" },
+        "acquisitionValueBRL": { "type": "number", "description": "Valor de aquisição em BRL" },
+        "acquisitionValueUSD": { "type": "number", "description": "Valor de aquisição em USD" },
+        "bookValue": { "type": "number", "description": "Valor contábil atual" },
+        "residualValue": { "type": "number", "description": "Valor residual" },
+        "lifeTimeMonths": { "type": "number", "description": "Vida útil em meses" },
+        "monthlyDepreciation": { "type": "number", "description": "Depreciação mensal" },
+        "rfidTag": { "type": "string", "description": "Código RFID/QR" },
+        "serialNumber": { "type": "string", "description": "Número de série" },
+        "description": { "type": "string", "description": "Descrição detalhada" },
+        "history": { "type": "array", "description": "Histórico de movimentações" }
+      },
+      "required": ["id", "name", "category", "status", "company"]
+    },
+    "User": {
+      "title": "Usuário do Sistema",
+      "description": "Dados do usuário e permissões.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["ADMINISTRADOR", "GESTOR", "ANALISTA", "USUARIO"] },
+        "company": { "type": "string" },
+        "branches": { "type": "array" },
+        "avatar": { "type": "string" },
+        "lastLogin": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Movement": {
+      "title": "Movimentação Patrimonial",
+      "description": "Registro de transferência, empréstimo, etc.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "number": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "requestDate": { "type": "string" },
+        "requesterId": { "type": "string" },
+        "requesterName": { "type": "string" },
+        "origin": { "type": "object" },
+        "destination": { "type": "object" },
+        "items": { "type": "array" }
+      },
+      "required": ["id", "type", "status", "requesterId"]
+    },
+    "Company": {
+      "title": "Empresa Cliente",
+      "description": "Dados das empresas/clientes que utilizam o sistema.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "cnpj": { "type": "string" },
+        "logo": { "type": "string" },
+        "address": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" }
+      },
+      "required": ["id", "name", "cnpj"]
+    }
+  },
+  "firestore": {
+    "/assets/{assetId}": {
+      "schema": "Asset",
+      "description": "Coleção global de ativos."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Perfis de usuários."
+    },
+    "/movements/{movementId}": {
+      "schema": "Movement",
+      "description": "Registro de movimentações."
+    },
+    "/companies/{companyId}": {
+      "schema": "Company",
+      "description": "Coleção de empresas cadastradas."
+    }
+  }
+}
