@@ -1,9 +1,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Asset, User } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const geminiKey = process.env.GEMINI_API_KEY;
+const ai = geminiKey ? new GoogleGenAI({ apiKey: geminiKey }) : null;
 
 export async function queryAssetData(query: string, assets: Asset[]) {
+  if (!ai) return "A IA não está configurada neste ambiente.";
   try {
     const context = `
       Você é um assistente de BI para um sistema de Gerenciamento de Ativos Imobilizados.
