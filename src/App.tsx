@@ -1828,7 +1828,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="font-extrabold text-xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
+          <span className="font-extrabold text-2xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest text-muted">
           <a href="#about" className="hover:text-white transition-colors">SOBRE</a>
@@ -2262,7 +2262,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
       <footer className="py-12 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 opacity-50">
           <div className="flex items-center gap-4">
-            <span className="font-bold text-sm tracking-tighter uppercase whitespace-nowrap">Asset Solution</span>
+            <span className="font-bold text-lg tracking-tighter uppercase whitespace-nowrap text-white">Asset <span className="text-primary">Solution</span></span>
           </div>
           <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-center">© 2024 - Asset Solution • CNPJ 46.141.266/0001-55 • Inteligência Patrimonial</p>
           <div className="flex gap-6 text-xs font-bold uppercase tracking-widest">
@@ -3009,7 +3009,7 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
               <Package className="text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">AssetManager Pro</h1>
+              <h1 className="text-2xl font-black text-white">Asset <span className="text-primary">Solution</span></h1>
               <p className="text-xs text-muted">Gestão Inteligente de Ativos</p>
             </div>
           </div>
@@ -3099,8 +3099,8 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
             </div>
             {!isSidebarCollapsed && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <h1 className="font-bold leading-none text-sm whitespace-nowrap">AssetManager</h1>
-                <span className="text-[9px] text-muted uppercase tracking-tighter">Enterprise Pro</span>
+                <h1 className="font-extrabold text-lg leading-none tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></h1>
+                <span className="text-[9px] text-muted uppercase tracking-tighter font-bold">Enterprise Pro</span>
               </motion.div>
             )}
           </div>
