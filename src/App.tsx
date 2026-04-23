@@ -1907,15 +1907,15 @@ function PortalCard({ title, subtitle, badge, desc, icon, onClick, color, isExte
         </p>
       </div>
 
-      <div className="relative z-10 block">
-        <p className="text-muted font-medium text-xs md:text-sm leading-relaxed italic opacity-90 group-hover:opacity-100 transition-opacity whitespace-normal break-words">
+      <div className="relative z-10 block mt-2">
+        <p className="text-muted font-medium text-xs md:text-sm leading-relaxed italic opacity-100 transition-opacity whitespace-normal break-words">
           {desc}
         </p>
       </div>
 
-      <div className="mt-auto pt-8 shrink-0">
+      <div className="mt-8 pt-4 shrink-0">
         <div className={cn(
-          "w-12 h-0.5 transition-all duration-500",
+          "w-12 h-1 rounded-full transition-all duration-500",
           color === 'amber' ? 'bg-amber-500' :
           color === 'blue' ? 'bg-blue-500' :
           'bg-purple-500'
@@ -3291,11 +3291,23 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
   const handleGoogleLogin = async () => {
     setLoginError(null);
     const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+    
     try {
       await signInWithPopup(auth, provider);
     } catch (error: any) {
-      setLoginError("Erro ao autenticar com o Google.");
-      console.error(error);
+      console.error("Google Login Error:", error);
+      if (error.code === 'auth/popup-blocked') {
+        setLoginError("O pop-up de login foi bloqueado pelo navegador. Por favor, permita pop-ups para este site.");
+      } else if (error.code === 'auth/cancelled-popup-request' || error.code === 'auth/popup-closed-by-user') {
+        setLoginError("Login cancelado pelo usuário.");
+      } else if (error.code === 'auth/unauthorized-domain') {
+        setLoginError("Este domínio não está autorizado para login Google nas configurações do Firebase.");
+      } else {
+        setLoginError("Ocorreu um erro ao autenticar com o Google. Tente novamente.");
+      }
     }
   };
 
