@@ -74,7 +74,15 @@ import {
   Zap,
   Anchor,
   ArrowUp,
-  MessageCircle
+  MessageCircle,
+  Instagram,
+  Linkedin,
+  Facebook,
+  Monitor,
+  Target,
+  Rocket,
+  Headphones,
+  Activity
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Markdown from 'react-markdown';
@@ -1765,112 +1773,144 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
   const services = [
     { 
       title: 'Consultoria Patrimonial', 
-      description: 'Nossa consultoria é especializada na gestão do ativo imobilizado, o serviço consiste em analisar, mapear, avaliar, revisar os processos, implantar normas e políticas, e fornecer soluções para que os clientes possam ter mais controle e conhecimento do seu patrimônio para tomada de decisões.', 
-      icon: <Shield size={24} className="text-purple-500" /> 
+      description: 'Eliminamos inconsistências patrimoniais e estruturamos normas, políticas e processos para garantir conformidade e governança estratégica.', 
+      icon: <Shield size={24} className="text-primary" />,
+      tag: 'Estratégia'
     },
     { 
-      title: 'Gestão de Ativos', 
-      description: 'Para uma boa gestão do ativo Imobilizado, é preciso assegurar que a base do ativo esteja em conformidade com o que é apresentado nas demonstrações financeiras, para isso realizamos o trabalho de mapear e elaborar o controle gerencial dos Ativos.', 
-      icon: <Layers size={24} className="text-primary" /> 
+      title: 'Inventário Físico Patrimonial', 
+      description: 'Inventário completo, padronizado e conciliado. Levantamento físico com acuracidade comprovada, pronto para processos de auditoria.', 
+      icon: <Package size={24} className="text-amber-500" />,
+      tag: 'Operacional'
     },
     { 
-      title: 'Revisão de vida útil e Valor residual', 
-      description: 'O valor residual e a vida útil de um ativo devem ser revisados pelo menos ao final de cada exercício conforme o CPC 27 item 51 e Lei 11.638/2007 artigo 3º inciso II); essa revisão além de ser obrigatória, tem o prazo de 3 a 5 anos conforme o item 34 do CPC 27', 
-      icon: <Clock size={24} className="text-success" /> 
-    },
-    { 
-      title: 'Inventário Físico', 
-      description: 'Inventário tem por objetivo o levantamento físico dos bens da organização, através de vistorias, coleta de dados, saneamento e padronização dos cadastros, conciliação físico x contábil, e demais ajustes no sistema.', 
-      icon: <Package size={24} className="text-amber-500" /> 
+      title: 'Revisão de Vida Útil e Valor Residual', 
+      description: 'Atendimento obrigatório (CPC 27) com impacto direto no resultado e na confiabilidade das demonstrações financeiras da sua organização.', 
+      icon: <History size={24} className="text-purple-500" />,
+      tag: 'Contábil'
     },
     { 
       title: 'Teste de Impairment (CPC 01)', 
-      description: 'O Objetivo do teste é assegurar que os ativos não estejam registrados contabilmente por um valor superior ao seu valor recuperável. E nós efetuamos o teste pelo valor líquido de venda e pelo valor de uso conforme a metodologia aplicada no CPC 01.', 
-      icon: <TrendingDown size={24} className="text-danger" /> 
+      description: 'Garantia de que nenhum ativo esteja superavaliado contabilmente. Avaliação pelo valor líquido de venda e pelo valor de uso.', 
+      icon: <TrendingDown size={24} className="text-danger" />,
+      tag: 'Compliance'
     },
     { 
-      title: 'Relatório RCP – ANEEL', 
-      description: 'O envio do Relatório de controle patrimonial das empresas de energia (Pequenas Centrais Hidrelétricas – PCH), é obrigatório o envio até 30 de abril do ano subsequente conforme MCPSE. Resolução Normativa ANEEL nº 674/2015', 
-      icon: <Zap size={24} className="text-amber-400" /> 
+      title: 'Relatórios Regulatórios', 
+      description: 'Conformidade com RCP – ANEEL (PCH e concessões) e SisPAT / SEI – ANTAQ. Atendimento rigoroso aos prazos e normas vigentes.', 
+      icon: <Zap size={24} className="text-amber-400" />,
+      tag: 'Regulatório'
     },
     { 
       title: 'Avaliação de Bens', 
-      description: 'As avaliações visam determinar o valor justo dos bens, o valor de mercado, através de um Laudo de Avaliação em conformidade de acordo com as normas: CPC 27 e ICPC 10, NBR 14.653 da ABNT, IBAPE, e Leis 11.638/07, 11.941/09 e 12.249/10.', 
-      icon: <DollarSign size={24} className="text-amber-600" /> 
-    },
-    { 
-      title: 'SisPAT / SEI – ANTAQ', 
-      description: 'Lista dos Bens Reversíveis e Inventário (Levantamento físico e contábil) atualizado, com discriminação dos bens próprios e bens reversíveis a União. Resolução Normativa nº 43.', 
-      icon: <Anchor size={24} className="text-blue-500" /> 
-    },
-    { 
-      title: 'Placas de Identificação', 
-      description: 'Confecção de etiquetas, tags e placas de identificação física dos bens, personalizada com logotipo, numeração e código de barras, em alumínio e em aço inoxidável.', 
-      icon: <QrCode size={24} className="text-gray-400" /> 
+      description: 'Laudos técnicos em conformidade com as normas ABNT NBR 14.653, IBAPE e legislação vigente (Leis 11.638/07 e 11.941/09).', 
+      icon: <DollarSign size={24} className="text-amber-600" />,
+      tag: 'Avaliação'
     }
   ];
 
   const solutions = [
     { 
-      title: 'AssetManager Pro', 
-      description: 'Sistema Web completo para controle e monitoramento das movimentações dos bens: Aquisições, transferências, baixas, ordens de serviços, relatórios e indicadores em Tempo Real.', 
-      icon: <Globe size={24} className="text-primary" /> 
+      title: 'Asset Manager Pro', 
+      description: 'A plataforma definitiva para gestão do ativo imobilizado. Controle total de aquisições, transferências, baixas e ordens de serviço com dashboards inteligentes.', 
+      icon: <Monitor size={32} className="text-primary" />,
+      features: ['Dashboards em tempo real', 'Sincronismo Online', 'Segurança Jurídica']
     },
     { 
-      title: 'Aplicativo de Inventário', 
-      description: 'Ferramenta de coleta em campo que integra, sincroniza e atualiza os dados instantaneamente durante o levantamento físico, eliminando erros e redabalho.', 
-      icon: <Smartphone size={24} className="text-info" /> 
+      title: 'App de Inventário (Mobile)', 
+      description: 'Inventário físico digital, rápido e confiável. Coleta em campo sem papel com integração QR Code ou RFID e sincronização instantânea com a nuvem.', 
+      icon: <Smartphone size={32} className="text-info" />,
+      features: ['Coleta Offline', 'QR Code / RFID', 'Redução de erros em 90%']
     }
   ];
 
+  const processSteps = [
+    { title: 'DIRETRIZES & POLÍTICA', desc: 'Definição de normas, manuais de procedimentos e governança patrimonial.', icon: <Search size={20} /> },
+    { title: 'INVENTÁRIO (SANEAMENTO)', desc: 'Levantamento físico padronizado e conciliação físico x contábil de alta precisão.', icon: <ClipboardCheck size={20} /> },
+    { title: 'AVALIAÇÃO & VIDA ÚTIL', desc: 'Revisão técnica, laudos normativos e atendimento rigoroso ao CPC 27.', icon: <BarChart3 size={20} /> },
+    { title: 'GESTÃO (ASSETMANAGER PRO)', desc: 'Monitoramento contínuo, dashboards BI e controle total via software.', icon: <CheckCircle size={20} /> }
+  ];
+
+  const segments = [
+    { name: 'Energia', desc: 'PCHs e Concessões', icon: <Zap size={20} /> },
+    { name: 'Portos', desc: 'Infraestrutura Portuária', icon: <Anchor size={20} /> },
+    { name: 'Indústria', desc: 'Manufatura e Produção', icon: <Building2 size={20} /> },
+    { name: 'Agronegócio', desc: 'Complexos Industriais', icon: <Target size={20} /> },
+    { name: 'Logística', desc: 'Transporte e Armazém', icon: <Globe size={20} /> },
+    { name: 'Varejo', desc: 'Grandes Redes', icon: <Package size={20} /> },
+    { name: 'Hospitalar', desc: 'Saúde e Tecnologia', icon: <Activity size={20} /> },
+    { name: 'Órgãos Públicos', desc: 'Gestão de Ativos Estatais', icon: <Shield size={20} /> }
+  ];
+
   return (
-    <div className="min-h-screen bg-[#0b1220] text-white selection:bg-primary/30">
+    <div className="min-h-screen bg-[#0b1220] text-white selection:bg-primary/30 scroll-smooth">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="font-extrabold text-4xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest text-muted">
-          <a href="#about" className="hover:text-white transition-colors">SOBRE</a>
-          <a href="#services" className="hover:text-white transition-colors">SERVIÇOS</a>
-          <a href="#solutions" className="hover:text-white transition-colors">SOLUÇÕES</a>
-          <a href="#contact" className="hover:text-white transition-colors">CONTATO</a>
+        <div className="hidden lg:flex items-center gap-10 text-sm font-black uppercase tracking-[0.2em] text-muted">
+          <a href="#solutions" className="hover:text-primary transition-colors">Soluções</a>
+          <a href="#services" className="hover:text-primary transition-colors">Serviços</a>
+          <a href="#process" className="hover:text-primary transition-colors">Como Funciona</a>
+          <a href="#about" className="hover:text-primary transition-colors">Sobre</a>
+          <a href="#contact" className="hover:text-primary transition-colors">Contato</a>
         </div>
-        <button 
-          onClick={onEnterSystem}
-          className="px-6 py-2 bg-primary hover:bg-primary/80 text-white rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-primary/20"
-        >
-          Acessar Sistema <ArrowUpRight size={18} />
-        </button>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={onEnterSystem}
+            className="px-6 py-2 bg-primary text-white rounded-xl font-bold text-xs transition-all uppercase tracking-widest flex items-center gap-2 shadow-lg shadow-primary/30 hover:scale-105 active:scale-95 shadow-xl"
+          >
+            ACESSAR SISTEMA <ArrowUpRight size={16} />
+          </button>
+        </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+      <section className="pt-40 pb-20 px-6 relative overflow-hidden">
         <div className="absolute top-40 right-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-10 left-[-10%] w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-widest mb-8">
               Excelência em Gestão Patrimonial
             </span>
-            <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[0.9]">
-              OTIMIZE SEUS <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">PROCESSOS</span> <br /> E CONTROLE.
+            <h1 className="text-4xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tighter uppercase">
+              Controle total <br /> do ativo imobilizado, <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">do inventário à decisão.</span>
             </h1>
-            <p className="text-muted text-lg mb-10 max-w-lg leading-relaxed">
-              A <strong>Asset Solution</strong> é especializada em Gestão de Ativos, oferecendo soluções que visam otimizar os processos e o controle do ativo imobilizado.
+            <p className="text-muted text-lg mb-10 max-w-lg leading-relaxed font-medium">
+              A <strong>Asset Solution</strong> transforma o ativo imobilizado em informação confiável, auditável e valorizada, combinando consultoria especializada e tecnologia própria para eliminar riscos, retrabalho e perdas patrimoniais.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={onEnterSystem} className="w-full sm:w-auto px-8 py-4 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all text-center">
-                Acessar AssetManager
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <button 
+                onClick={onEnterSystem}
+                className="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all text-center text-sm shadow-xl"
+              >
+                ACESSAR SISTEMA
               </button>
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white flex items-center justify-center font-black uppercase tracking-widest rounded-2xl hover:bg-white/5 transition-all">
+              <a href="#contact" className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white flex items-center justify-center font-black uppercase tracking-widest rounded-2xl hover:bg-white/5 transition-all text-sm">
                 Solicitar Proposta
               </a>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center text-success"><Check size={14} /></div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Acuracidade Comprovada</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center text-success"><Check size={14} /></div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Conformidade Contábil</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center text-success"><Check size={14} /></div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Dashboards em tempo real</span>
+              </div>
             </div>
           </motion.div>
 
@@ -1880,264 +1920,194 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
             transition={{ duration: 1, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-square bg-gradient-to-br from-primary/20 to-transparent border border-white/10 rounded-[40px] p-4 md:p-8 glass overflow-hidden shadow-2xl relative">
-              <div className="absolute inset-0 bg-[#0b1220]/40 backdrop-blur-[2px]" />
-              <div className="relative z-10 grid grid-cols-2 gap-3 md:gap-4 h-full">
-                <div className="bg-panel/80 p-4 rounded-2xl border border-white/10 flex flex-col justify-between overflow-hidden relative group">
-                  <div className="flex justify-between items-start mb-2">
-                    <PieChartIcon size={24} className="text-primary" />
+            <div className="aspect-square bg-gradient-to-br from-primary/10 to-transparent border border-white/10 rounded-[48px] p-6 md:p-10 glass overflow-hidden shadow-2xl relative">
+              <div className="relative z-10 grid grid-cols-2 gap-4 md:gap-6 h-full font-sans">
+                {/* Dashboard Widget */}
+                <motion.div 
+                  animate={{ y: [0, -10, 0], scale: [1, 1.05, 1] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  className="bg-panel border border-white/10 p-5 rounded-3xl flex flex-col justify-between shadow-xl relative overflow-hidden group"
+                >
+                  <motion.div 
+                    animate={{ x: ['-200%', '200%'] }} 
+                    transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg]"
+                  />
+                  <div className="flex justify-between items-center relative z-10">
+                    <PieChartIcon className="text-primary" size={20} />
+                    <span className="text-[8px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-black">AUDITADO</span>
+                  </div>
+                  <div className="py-2 relative z-10">
+                    <p className="text-[9px] font-bold text-muted uppercase tracking-widest">Base de Ativos</p>
+                    <motion.p 
+                      animate={{ opacity: [1, 0.5, 1] }} 
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      className="text-3xl font-black tracking-tighter"
+                    >
+                      99.8%
+                    </motion.p>
+                    <p className="text-[8px] text-success font-bold mt-1 tracking-widest uppercase">Acuracidade Física</p>
+                  </div>
+                  <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden relative z-10">
                     <motion.div 
-                      animate={{ scale: [1, 1.2, 1] }} 
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(34,197,94,0.6)]" 
+                      initial={{ width: 0 }} 
+                      animate={{ width: ['80%', '99.8%', '92%', '99.8%'] }} 
+                      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} 
+                      className="h-full bg-success shadow-[0_0_15px_rgba(34,197,94,0.6)]" 
                     />
                   </div>
-                  <div className="flex-grow flex items-center justify-center py-2">
-                     <div className="w-full h-16 flex items-center justify-around gap-1">
-                        {[0.4, 0.7, 0.5, 0.9, 0.6].map((v, i) => (
-                           <motion.div
-                              key={i}
-                              initial={{ height: "20%" }}
-                              animate={{ height: [`${v * 100}%`, `${(v-0.2) * 100}%`, `${v * 100}%`] }}
-                              transition={{ duration: 1.5 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
-                              className="w-2 bg-primary/40 rounded-full"
-                           />
-                        ))}
-                     </div>
-                  </div>
-                  <div className="relative z-10">
-                    <p className="text-[9px] text-muted font-bold uppercase">Gestão de Ativos</p>
-                    <p className="text-lg font-black leading-tight">AssetManager</p>
-                  </div>
-                </div>
+                </motion.div>
 
-                <div className="bg-panel/80 p-4 rounded-2xl border border-white/10 flex flex-col justify-between overflow-hidden relative">
-                  <div className="flex justify-between items-start mb-2">
-                    <Smartphone size={24} className="text-primary" />
-                    <motion.div 
-                      animate={{ opacity: [0.3, 1, 0.3] }} 
-                      transition={{ duration: 1, repeat: Infinity }}
-                      className="text-[8px] font-black text-primary"
-                    >SYNC</motion.div>
+                {/* Status Widget */}
+                <motion.div 
+                  animate={{ y: [0, 10, 0], rotate: [-1, 1, -1] }}
+                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                  className="bg-panel border border-white/10 p-5 rounded-3xl flex flex-col justify-between shadow-xl group overflow-hidden relative"
+                >
+                  <div className="flex justify-between items-center relative z-10">
+                    <Smartphone className="text-info" size={20} />
+                    <motion.div animate={{ opacity: [0.3, 1, 0.3], scale: [1, 2, 1] }} transition={{ repeat: Infinity, duration: 1 }} className="w-2 h-2 rounded-full bg-info shadow-[0_0_12px_rgba(0,186,211,1)]" />
                   </div>
-                  <div className="flex-grow flex items-center justify-center">
-                    <div className="relative w-12 h-12 flex items-center justify-center">
-                      {[1, 2, 3].map((circle) => (
-                        <motion.div
-                          key={circle}
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          animate={{ scale: 1.5, opacity: [0, 0.3, 0] }}
-                          transition={{ duration: 2, delay: circle * 0.6, repeat: Infinity }}
-                          className="absolute inset-0 border border-primary rounded-full"
-                        />
-                      ))}
-                      <Smartphone size={16} className="text-primary/50" />
+                  <div className="text-center py-4 relative z-10">
+                    <motion.p 
+                      animate={{ scale: [1, 1.1, 1], letterSpacing: ['0.1em', '0.3em', '0.1em'] }}
+                      transition={{ repeat: Infinity, duration: 4 }}
+                      className="text-[24px] font-black tracking-tighter text-info sm:text-[28px]"
+                    >
+                      LIVE
+                    </motion.p>
+                    <p className="text-[8px] uppercase font-bold text-muted tracking-[0.2em]">Sincronismo Social</p>
+                  </div>
+                  <div className="flex justify-center gap-1.5 relative z-10">
+                    {[1, 2, 3, 4].map(i => (
+                      <motion.div 
+                        key={i} 
+                        animate={{ opacity: [0.2, 1, 0.2], y: [0, -4, 0] }}
+                        transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.1 }}
+                        className="w-1.5 h-1.5 rounded-full bg-info" 
+                      />
+                    ))}
+                  </div>
+                  <div className="absolute inset-0 bg-info/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                </motion.div>
+
+                {/* Big Indicator Chart */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  className="col-span-2 bg-[#0b1220]/60 border border-white/10 p-6 rounded-[32px] flex flex-col justify-between shadow-inner group relative overflow-hidden"
+                >
+                  <div className="flex justify-between items-start relative z-10">
+                    <div>
+                      <h4 className="text-[12px] font-black uppercase tracking-widest text-white/50 mb-1">Crescimento Patrimonial</h4>
+                      <p className="text-2xl font-black tracking-tighter leading-tight text-white italic">+15 ANOS <span className="text-primary not-italic">EXP</span></p>
                     </div>
+                    <motion.div 
+                      animate={{ rotate: 360, scale: [1, 1.2, 1] }} 
+                      transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+                      className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10"
+                    >
+                      <BarChart3 size={16} className="text-primary" />
+                    </motion.div>
                   </div>
-                  <div>
-                    <p className="text-[9px] text-muted font-bold uppercase tracking-tighter">APP Mobile</p>
-                    <p className="text-lg font-black uppercase tracking-tight">Coleta</p>
-                  </div>
-                </div>
-
-                <div className="col-span-2 bg-panel/80 p-6 md:p-8 rounded-3xl border border-white/10 relative overflow-hidden group min-h-[320px] flex flex-col justify-between">
-                   <div className="flex justify-between items-center relative z-10">
-                      <div className="space-y-1">
-                        <p className="text-[12px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Dashboards Inteligentes</p>
-                        <h4 className="text-lg md:text-xl font-black uppercase tracking-tighter leading-none">Indicadores Global BI</h4>
-                      </div>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  
+                  <div className="flex items-end gap-1.5 h-24 mt-4 relative z-10">
+                    {[40, 70, 45, 95, 65, 85, 55, 100].map((h, i) => (
+                      <motion.div 
+                        key={i} 
+                        initial={{ height: 0 }} 
+                        animate={{ height: [`${h * 0.7}%`, `${h}%`, `${h * 0.85}%`] }} 
+                        transition={{ delay: i * 0.1, duration: 2.5, repeat: Infinity, ease: "easeInOut" }} 
+                        className="flex-1 bg-gradient-to-t from-primary/30 via-primary/60 to-primary rounded-t-lg relative group/bar" 
                       >
-                         <div className="w-12 h-12 rounded-full border-2 border-dashed border-primary/40 flex items-center justify-center">
-                            <Sparkles size={20} className="text-amber-400" />
-                         </div>
+                        <motion.div 
+                          animate={{ opacity: [0, 1, 0] }}
+                          transition={{ repeat: Infinity, duration: 2, delay: i * 0.3 }}
+                          className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_12px_white]"
+                        />
                       </motion.div>
-                   </div>
-                   
-                   <div className="space-y-8 relative z-10 flex-grow pt-8">
-                      <div className="flex items-end gap-2 h-32 px-2">
-                        {[35, 65, 45, 85, 60, 75, 40, 95, 55, 80, 50, 90, 45, 70, 55, 85].map((h, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ height: 0 }}
-                            animate={{ height: `${h}%` }}
-                            transition={{ 
-                              duration: 1.5, 
-                              delay: i * 0.05, 
-                              repeat: Infinity, 
-                              repeatType: "reverse",
-                              ease: "easeInOut"
-                            }}
-                            className="flex-1 bg-gradient-to-t from-primary via-primary/80 to-purple-500 rounded-t-lg shadow-[0_0_15px_rgba(37,99,235,0.2)]"
-                          />
-                        ))}
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-6 pb-2">
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5 backdrop-blur-sm">
-                           <p className="text-[10px] text-muted uppercase font-bold tracking-widest mb-2">Acuracidade do Inventário</p>
-                           <div className="flex items-center gap-3">
-                              <motion.p 
-                                animate={{ opacity: [0.7, 1, 0.7] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                                className="text-2xl font-black text-success"
-                              >99.8%</motion.p>
-                              <div className="h-1.5 flex-grow bg-white/10 rounded-full overflow-hidden">
-                                <motion.div 
-                                  initial={{ width: 0 }}
-                                  animate={{ width: "99.8%" }}
-                                  transition={{ duration: 3, ease: "easeOut" }}
-                                  className="h-full bg-success shadow-[0_0_10px_rgba(34,197,94,0.5)]"
-                                />
-                              </div>
-                           </div>
-                        </div>
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5 backdrop-blur-sm">
-                           <p className="text-[10px] text-muted uppercase font-bold tracking-widest mb-2">Sincronismo Tempo Real</p>
-                           <div className="flex items-center gap-4">
-                              <motion.div 
-                                animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
-                                transition={{ duration: 1, repeat: Infinity }}
-                                className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(37,99,235,0.6)]"
-                              />
-                              <p className="text-2xl font-black text-primary tracking-tighter">ONLINE</p>
-                           </div>
-                        </div>
-                      </div>
-                   </div>
-                   
-                   <div className="absolute top-0 right-0 p-4 opacity-[0.02] pointer-events-none">
-                      <BarChart3 size={240} />
-                   </div>
-                </div>
+                    ))}
+                  </div>
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+                </motion.div>
               </div>
             </div>
+            {/* Abstract Shapes */}
+            <div className="absolute -top-6 -right-6 w-12 h-12 bg-primary/20 rounded-full blur-xl" />
+            <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-purple-500/20 rounded-full blur-2xl" />
           </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-[#080e1a]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.2em] mb-4">Quem Somos</h2>
-            <p className="text-2xl md:text-5xl font-black mb-8 leading-tight italic max-w-4xl mx-auto">
-              "Transformamos o ativo imobilizado em informação confiável, auditável e valorizada."
-            </p>
-            <div className={`text-muted leading-relaxed max-w-4xl mx-auto space-y-6 text-left md:text-center transition-all duration-500 overflow-hidden ${!showAllAbout ? 'max-h-[220px] relative' : 'max-h-[1500px]'}`}>
-              <p>
-                A <strong>Asset Solution</strong> é especializada em Gestão de Ativos, oferecendo soluções completas para otimizar os processos, garantir conformidade e fortalecer o controle do ativo imobilizado das organizações.
-              </p>
-              <p>
-                Contamos com uma equipe altamente qualificada, formada por profissionais com mais de 15 anos de experiência na área patrimonial, atuando com precisão técnica, visão contábil e foco em resultados.
-              </p>
-              <p>
-                Executamos levantamentos de inventário físico, saneamento da base patrimonial e conciliação contábil com o físico, além da implantação de normas e procedimentos, avaliação de bens móveis e imóveis, revisão de vida útil e valor residual. Também realizamos a identificação física dos bens, com confecção de etiquetas, tags e placas patrimoniais.
-              </p>
-              <p>
-                Para garantir eficiência contínua, oferecemos o <strong>AssetManager Pro</strong>, nossa solução para controle e monitoramento das movimentações patrimoniais, abrangendo aquisições, transferências, baixas, ordens de serviço, relatórios e indicadores em tempo real.
-              </p>
-              <p>
-                Complementamos com o <strong>Aplicativo de Inventário</strong>, que coleta informações em campo, integra, sincroniza e atualiza os dados de forma instantânea, assegurando confiabilidade e agilidade na gestão dos ativos.
-              </p>
-              {!showAllAbout && (
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#080e1a] to-transparent pointer-events-none" />
-              )}
+      {/* Prova Rápida (Stats) */}
+      <section className="py-12 bg-[#0d1627] border-y border-white/5 shadow-inner">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center md:text-left">
+              <p className="text-3xl md:text-5xl font-black text-white">99,8%</p>
+              <p className="text-[10px] uppercase font-bold text-muted tracking-widest mt-1">Acuracidade do Inventário</p>
             </div>
-            <button 
-              onClick={() => setShowAllAbout(!showAllAbout)}
-              className="mt-8 px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all"
-            >
-              {showAllAbout ? 'Ver Menos' : 'Ler Mais Sobre Nós'}
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 text-center">
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl">
-              <Shield className="mx-auto mb-4 text-primary" size={32} />
-              <h3 className="text-lg font-black uppercase mb-2">Missão</h3>
-              <p className="text-sm text-muted">Prestar consultoria com excelência, sempre buscando a satisfação e bem-estar de nossos clientes e colaboradores.</p>
+            <div className="text-center md:text-left">
+              <p className="text-3xl md:text-5xl font-black text-primary">Live</p>
+              <p className="text-[10px] uppercase font-bold text-muted tracking-widest mt-1">Sincronismo Online</p>
             </div>
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl">
-              <Eye className="mx-auto mb-4 text-primary" size={32} />
-              <h3 className="text-lg font-black uppercase mb-2">Visão</h3>
-              <p className="text-sm text-muted">Ser referência em gestão do ativo imobilizado no mercado nacional.</p>
+            <div className="text-center md:text-left">
+              <p className="text-3xl md:text-5xl font-black text-white">+15 Anos</p>
+              <p className="text-[10px] uppercase font-bold text-muted tracking-widest mt-1">De Experiência Patrimonial</p>
             </div>
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl">
-              <CheckCircle className="mx-auto mb-4 text-primary" size={32} />
-              <h3 className="text-lg font-black uppercase mb-2">Valores</h3>
-              <p className="text-sm text-muted">Ética, comprometimento, integridade e respeito em todas as nossas relações.</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 border-t border-white/10 pt-20">
-            <div className="p-4 md:p-0">
-              <p className="text-2xl md:text-4xl font-black text-white">+15 Anos</p>
-              <p className="text-[10px] md:text-xs text-muted uppercase font-bold tracking-widest">De Know-how</p>
-            </div>
-            <div className="p-4 md:p-0">
-              <p className="text-2xl md:text-4xl font-black text-white">AssetManager</p>
-              <p className="text-[10px] md:text-xs text-muted uppercase font-bold tracking-widest">Solução Completa</p>
-            </div>
-            <div className="p-4 md:p-0">
-              <p className="text-2xl md:text-4xl font-black text-white">Móveis e Imóveis</p>
-              <p className="text-[10px] md:text-xs text-muted uppercase font-bold tracking-widest leading-none">Avaliação Especializada</p>
-            </div>
-            <div className="p-4 md:p-0">
-              <p className="text-2xl md:text-4xl font-black text-white">RFID/QR</p>
-              <p className="text-[10px] md:text-xs text-muted uppercase font-bold tracking-widest leading-none">Identificação Física</p>
+            <div className="text-center md:text-left border-l md:border-l-0 border-white/10 pl-4 md:pl-0">
+              <p className="text-3xl md:text-5xl font-black text-amber-500">Nacional</p>
+              <p className="text-[10px] uppercase font-bold text-muted tracking-widest mt-1">Atuação em todo Brasil</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black mb-8 leading-[0.9] uppercase tracking-tighter text-center">Nossos Serviços</h2>
-            <p className="text-muted leading-relaxed max-w-2xl mx-auto">
-              Oferecemos uma jornada completa de regularização patrimonial, desde o levantamento físico inicial até a gestão digital via sistema próprio.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-primary/50 transition-all group"
-              >
-                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-black mb-4 uppercase leading-tight tracking-tight">{item.title}</h3>
-                <div className={`overflow-hidden transition-all duration-300 ${expandedService === idx ? 'max-h-[200px]' : 'max-h-[60px]'}`}>
-                  <p className="text-muted text-sm leading-relaxed">{item.description}</p>
-                </div>
-                <button 
-                  onClick={() => setExpandedService(expandedService === idx ? null : idx)}
-                  className="mt-4 text-[10px] font-black uppercase tracking-widest text-primary hover:underline"
-                >
-                  {expandedService === idx ? 'Fecar' : 'Saiba Mais'}
-                </button>
-              </motion.div>
-            ))}
+      {/* O Problema */}
+      <section className="py-32 px-6 relative">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-6">Auditoria e Governança</h2>
+          <h3 className="text-3xl md:text-5xl font-black mb-8 leading-tight">O custo de não ter controle <br /> é maior do que você imagina.</h3>
+          <p className="text-muted text-lg max-w-2xl mx-auto italic">
+            "Patrimônio sem gestão é lucro que escorre pelos dedos e risco que trava a sua auditoria."
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { t: 'Ativos Fantasmas', d: 'Bens que constam no balanço mas não existem no físico, distorcendo o valor real da empresa.', icon: <AlertTriangle className="text-danger" /> },
+            { t: 'Riscos de Auditoria', d: 'Exposição a multas e ressalvas em auditorias externas (PWC, EY, Deloitte, KPMG).', icon: <Shield className="text-amber-500" /> },
+            { t: 'Inventários Caros', d: 'Processos manuais, demorados e que já nascem desatualizados pela falta de tecnologia.', icon: <Clock className="text-muted" /> },
+            { t: 'Decisões no Escuro', d: 'Dificuldade em visualizar o ciclo de vida do ativo para decisões inteligentes de CAPEX.', icon: <BarChart3 className="text-primary" /> }
+          ].map((item, i) => (
+            <div key={i} className="p-8 bg-white/5 border border-white/5 rounded-3xl flex flex-col gap-6 hover:bg-white/10 transition-all group">
+              <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-xl">{item.icon}</div>
+              <div>
+                <h4 className="text-lg font-black uppercase mb-3 tracking-tighter leading-tight">{item.t}</h4>
+                <p className="text-muted text-xs leading-relaxed font-medium">{item.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-20 text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 rounded-full text-primary font-black text-xs uppercase tracking-widest">
+            <Rocket size={16} /> A Asset Solution elimina o retrabalho e protege seu valor.
           </div>
         </div>
       </section>
 
-      {/* Solutions Section */}
-      <section id="solutions" className="py-32 px-6 bg-[#080e1a]">
+      {/* As Soluções (Product) */}
+      <section id="solutions" className="py-32 px-6 bg-[#080e1a] relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black mb-8 leading-[0.9] uppercase tracking-tighter">Sistemas e Tecnologia</h2>
-            <p className="text-muted leading-relaxed max-w-2xl mx-auto">
-              Nossa tecnologia foi desenvolvida para trazer a agilidade da era digital para o controle do seu patrimônio. Conheça as ferramentas que garantem precisão e transparência.
+            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-6">Tecnologia Própria</h2>
+            <h3 className="text-3xl md:text-5xl font-black mb-8 leading-[0.9]">Sistemas de Alta Performance</h3>
+            <p className="text-muted text-lg max-w-2xl mx-auto italic">
+              "Desenvolvemos tecnologia para trazer a precisão da era digital para o dia a dia da sua gestão."
             </p>
           </div>
           
@@ -2149,157 +2119,382 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="p-10 bg-white/5 border border-white/10 rounded-[40px] hover:border-primary/50 transition-all group flex flex-col"
+                className="p-10 bg-white/5 border border-white/10 rounded-[40px] hover:border-primary/50 transition-all group flex flex-col relative overflow-hidden"
               >
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                  {idx === 0 ? <Globe size={120} /> : <Zap size={120} />}
+                </div>
+                
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-all text-primary">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase mb-6 tracking-tight">{item.title}</h3>
                 <p className="text-muted text-lg leading-relaxed mb-8 flex-grow">
-                  {idx === 0 
-                    ? "A solução definitiva para o controle total do seu patrimônio. Monitore aquisições, baixas, transferências e ordens de serviço através de uma interface intuitiva com dashboards inteligentes e relatórios automáticos em tempo real. Ganhe transparência e segurança jurídica para sua empresa."
-                    : "Transforme seu levantamento físico em um processo digital de alta performance. Nosso app elimina o papel, reduz erros humanos em 90% e sincroniza dados instantaneamente com a nuvem via QR Code ou RFID. Agilidade sem precedentes direto da palma da sua mão."}
+                  {item.description}
                 </p>
+                
+                <div className="space-y-4 mb-10">
+                  {item.features.map(f => (
+                    <div key={f} className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center text-success"><Check size={12} /></div>
+                      <span className="text-xs font-bold text-white/80">{f}</span>
+                    </div>
+                  ))}
+                </div>
+
                 <div className="pt-8 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-primary">Tecnologia Exclusiva</span>
+                  <button onClick={onEnterSystem} className="text-[10px] font-black uppercase tracking-widest text-primary hover:underline flex items-center gap-2">
+                    Saiba Mais <ArrowRight size={12} />
+                  </button>
                   <div className="flex gap-1">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-50" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-20" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary/20" />
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-20 p-8 bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-[32px] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
-          >
-            <div>
-              <h4 className="text-xl font-black uppercase mb-2">Pronto para digitalizar seu patrimônio?</h4>
-              <p className="text-muted text-sm">Agende uma demonstração gratuita do AssetManager Pro hoje mesmo.</p>
+          <div className="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+             {[
+               { t: 'Dashboards BI', d: 'Visão executiva do seu patrimônio em poucos cliques.', i: <BarChart3 /> },
+               { t: 'Gestão Offline', d: 'Trabalhe em áreas sem conexão com sincronização posterior.', i: <Smartphone /> },
+               { t: 'Prazos Legais', d: 'Alertas de revisão e atendimentos regulatórios.', i: <Clock /> },
+               { t: 'Suporte Técnico', d: 'Consultores especializados acompanhando sua equipe.', i: <Headphones /> }
+             ].map((feature, i) => (
+                <div key={i} className="p-6 bg-white/5 border border-white/5 rounded-2xl flex flex-col items-center text-center">
+                  <div className="text-primary mb-4">{feature.i}</div>
+                  <h5 className="font-black uppercase text-sm mb-2">{feature.t}</h5>
+                  <p className="text-xs text-muted leading-relaxed">{feature.d}</p>
+                </div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Como Funciona (Process) */}
+      <section id="process" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="lg:w-1/2">
+               <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-6">Metodologia</h2>
+               <h3 className="text-3xl md:text-5xl font-black mb-8 leading-tight italic">Do diagnóstico à gestão automatizada.</h3>
+               <p className="text-muted text-lg mb-8 leading-relaxed italic">
+                 "Nossa entrega não termina no laudo. Nós transformamos o processo em cultura patrimonial dentro da sua organização."
+               </p>
+               <button onClick={onEnterSystem} className="px-8 py-4 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:bg-white/90 transition-all text-xs">
+                 Conhecer o Processo
+               </button>
             </div>
-            <button 
-              onClick={onEnterSystem}
-              className="px-8 py-4 bg-primary text-white font-black uppercase tracking-widest rounded-2xl hover:bg-primary/80 transition-all whitespace-nowrap shadow-xl shadow-primary/20"
-            >
-              Ver Demonstração
-            </button>
-          </motion.div>
+            
+            <div className="lg:w-1/2 grid grid-cols-1 gap-6 relative">
+               <div className="absolute left-[26px] top-8 bottom-8 w-px bg-white/10 hidden sm:block" />
+               {processSteps.map((step, i) => (
+                 <motion.div 
+                   key={i}
+                   initial={{ opacity: 0, x: 20 }}
+                   whileInView={{ opacity: 1, x: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: i * 0.1 }}
+                   className="flex gap-6 items-start relative z-10"
+                 >
+                   <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0 text-primary shadow-xl">
+                     {step.icon}
+                   </div>
+                   <div>
+                     <h4 className="text-lg font-black uppercase mb-1">{step.title}</h4>
+                     <p className="text-muted text-sm leading-relaxed">{step.desc}</p>
+                   </div>
+                 </motion.div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Serviços (Authority) */}
+      <section id="services" className="py-32 px-6 bg-[#0d1627]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <div className="max-w-2xl">
+               <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-4">Serviços Especializados</h2>
+               <h3 className="text-3xl md:text-5xl font-black leading-[0.9]">Excelência Técnica e Normativa</h3>
+            </div>
+            <div className="hidden md:block">
+              <p className="text-muted text-xs max-w-xs font-medium uppercase tracking-widest leading-relaxed">
+                Seguimos rigorosamente os padrões CPC, IFRS e normas brasileiras de avaliação.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, idx) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="p-10 bg-white/5 border border-white/10 rounded-[32px] hover:border-primary/50 transition-all flex flex-col group"
+              >
+                <div className="flex justify-between items-start mb-8">
+                  <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <span className="text-[8px] px-2 py-1 bg-white/5 border border-white/10 rounded-full font-black text-muted tracking-widest group-hover:text-primary transition-colors">
+                    {service.tag}
+                  </span>
+                </div>
+                <h4 className="text-xl font-black uppercase mb-4 leading-tight">{service.title}</h4>
+                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow italic">
+                  {service.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Segmentos (Scale) */}
+      <section id="segments" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-6">Expertise Multissetorial</h2>
+            <h3 className="text-3xl md:text-5xl font-black mb-8 leading-tight">Soluções Adaptadas <br /> para o seu Negócio</h3>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            {segments.map((s, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="px-8 py-6 bg-white/5 border border-white/5 rounded-3xl flex items-center gap-4 hover:bg-primary/10 hover:border-primary/20 transition-all cursor-default"
+              >
+                <div className="text-primary italic shrink-0">{s.icon}</div>
+                <div>
+                   <p className="font-black uppercase text-xs tracking-widest">{s.name}</p>
+                   <p className="text-[10px] text-muted font-bold">{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sobre (History) */}
+      <section id="about" className="py-32 px-6 bg-[#080e1a] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+           <div className="relative">
+              <div className="aspect-video bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-[48px] border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
+                 <div className="text-center p-12 relative z-10">
+                    <p className="text-6xl font-black text-white/10 mb-4 tracking-tighter italic whitespace-nowrap">EST. 2009</p>
+                    <p className="text-sm font-black uppercase tracking-[0.3em] text-primary">Asset Solution</p>
+                 </div>
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-20" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 p-10 bg-white shadow-2xl rounded-3xl hidden md:block">
+                 <p className="text-black font-black text-4xl tracking-tighter leading-none italic">+15 ANOS</p>
+                 <p className="text-black/50 text-[10px] font-bold uppercase tracking-widest mt-1">Impactando o Mercado</p>
+              </div>
+           </div>
+           <div>
+              <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.3em] mb-6 tracking-widest">Legado e Inovação</h2>
+              <h3 className="text-3xl md:text-5xl font-black mb-8 leading-tight italic">Nossa História: Rigor técnico e visão estratégica.</h3>
+              <div className="space-y-6 text-muted leading-relaxed font-medium">
+                <p>
+                  A <strong>Asset Solution</strong> surgiu para preencher o gap entre a necessidade técnica de auditoria e a praticidade da gestão operacional. Somos mais que uma consultoria; somos parceiros estratégicos dos nossos clientes na proteção de seus ativos.
+                </p>
+                <p>
+                  Com uma equipe que soma décadas de experiência nos maiores projetos de infraestrutura do país, entregamos laudos e sistemas que resistem ao mais rigoroso crivo institucional, atendendo normas como CPC 27, CPC 01, CPC 04, CPC 06 e ABNT NBR 14653.
+                </p>
+                <div className="grid grid-cols-2 gap-6 pt-6">
+                   <div className="p-4 bg-white/5 border border-white/5 rounded-2xl">
+                      <p className="text-2xl font-black text-white italic">+R$ 20Bi</p>
+                      <p className="text-[10px] uppercase font-bold text-muted tracking-widest">Controlados</p>
+                   </div>
+                   <div className="p-4 bg-white/5 border border-white/5 rounded-2xl">
+                      <p className="text-2xl font-black text-white italic">100%</p>
+                      <p className="text-[10px] uppercase font-bold text-muted tracking-widest">Aprovação Auditoria</p>
+                   </div>
+                </div>
+              </div>
+           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 bg-[#080e1a]">
-        <div className="max-w-7xl mx-auto glass rounded-[32px] md:rounded-[50px] p-8 md:p-20 border-white/5">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20">
+      <section id="contact" className="py-32 px-6 bg-[#0b1220] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32">
             <div>
-              <h2 className="text-3xl md:text-5xl font-black mb-8 leading-[0.9]">VAMOS <br className="hidden md:block" /> CONVERSAR?</h2>
-              <p className="text-muted text-lg mb-12">
-                Fale com um especialista da <strong>Asset Solution</strong> e entenda como podemos regularizar e valorizar o patrimônio de sua empresa.
+              <h2 className="text-3xl md:text-5xl font-black mb-12 leading-[1.1] tracking-tighter uppercase italic">
+                Controle total <br /> 
+                do ativo imobilizado, <br /> 
+                do inventário à decisão.
+              </h2>
+              <p className="text-muted text-xl mb-16 leading-relaxed max-w-md">
+                Pronto para dar o próximo passo? Nossa equipe de especialistas aguarda seu contato.
               </p>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all">
-                    <Mail size={20} />
+              
+              <div className="space-y-12">
+                <div className="flex items-center gap-6 group cursor-pointer">
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
+                    <Mail size={24} className="text-primary group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest">E-mail</p>
-                    <p className="font-bold">contato@assetbr.com.br</p>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Fale conosco</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">contato@assetbr.com.br</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all">
-                    <Phone size={20} />
+                
+                <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.open('https://wa.me/556521298243', '_blank')}>
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
+                    <MessageCircle size={24} className="text-primary group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest">Telefone / WhatsApp</p>
-                    <p className="font-bold">+55 (65) 2129-8243 / 99205-8727</p>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">WhatsApp Business</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">+55 (65) 2129-8243</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all">
-                     <Globe size={20} />
+
+                <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.open('tel:+5565992058727', '_blank')}>
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
+                    <Phone size={24} className="text-primary group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest">Website</p>
-                    <p className="font-bold">www.assetbr.com.br</p>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Telefone</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">+55 (65) 99205-8727</p>
                   </div>
                 </div>
+
+                <div className="flex items-start gap-6 group">
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center shrink-0 shadow-xl">
+                    <MapPin size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Localização</p>
+                    <p className="text-lg font-black italic max-w-xs leading-tight">Rua Trinta e Dois, Sl 201 Bloco 09, Santa Cruz II - Cuiabá/MT</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex gap-6 mt-16">
+                 <a href="https://www.linkedin.com/company/assetsolution" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white group shadow-lg">
+                    <Linkedin size={20} className="group-hover:scale-110 transition-transform" />
+                 </a>
+                 <a href="https://www.instagram.com/assetbr/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white group shadow-lg">
+                    <Instagram size={20} className="group-hover:scale-110 transition-transform" />
+                 </a>
+                 <a href="https://www.facebook.com/AssetConsultoriaBR" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white group shadow-lg">
+                    <Facebook size={20} className="group-hover:scale-110 transition-transform" />
+                 </a>
               </div>
             </div>
-            <form className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] text-muted uppercase font-bold tracking-widest">Seu Nome</label>
-                  <input type="text" className="w-full bg-[#0b1220] border-white/10 focus:border-primary" placeholder="Nome completo" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] text-muted uppercase font-bold tracking-widest">Sua Empresa</label>
-                  <input type="text" className="w-full bg-[#0b1220] border-white/10 focus:border-primary" placeholder="Nome da empresa" />
-                </div>
+
+            <div className="bg-white/5 border border-white/10 p-10 rounded-[48px] shadow-2xl relative">
+               <div className="absolute top-0 left-0 w-full h-2 bg-primary rounded-t-full" />
+               <h3 className="text-2xl font-black uppercase mb-10 tracking-tight">Envie sua mensagem</h3>
+               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-muted ml-1">Nome Completo</label>
+                    <input type="text" placeholder="Como podemos te chamar?" className="w-full bg-[#0b1220] border border-white/10 rounded-2xl p-5 focus:border-primary outline-none text-white transition-all shadow-inner" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-muted ml-1">E-mail Corporativo</label>
+                    <input type="email" placeholder="seuemail@empresa.com.br" className="w-full bg-[#0b1220] border border-white/10 rounded-2xl p-5 focus:border-primary outline-none text-white transition-all shadow-inner" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-muted ml-1">Mensagem</label>
+                    <textarea rows={4} placeholder="Descreva brevemente sua necessidade..." className="w-full bg-[#0b1220] border border-white/10 rounded-2xl p-5 focus:border-primary outline-none text-white transition-all resize-none shadow-inner" />
+                  </div>
+                  <button type="submit" className="w-full py-5 bg-primary text-white font-black uppercase tracking-widest rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-primary/20">Enviar Mensagem</button>
+                </form>
               </div>
-              <div className="space-y-1">
-                  <label className="text-[10px] text-muted uppercase font-bold tracking-widest">E-mail de Contato</label>
-                  <input type="email" className="w-full bg-[#0b1220] border-white/10 focus:border-primary" placeholder="executivo@suaempresa.com" />
-              </div>
-              <div className="space-y-1">
-                  <label className="text-[10px] text-muted uppercase font-bold tracking-widest">Como podemos ajudar?</label>
-                  <textarea className="w-full bg-[#0b1220] border-white/10 focus:border-primary min-h-[150px]" placeholder="Descreva brevemente sua necessidade..." />
-              </div>
-              <button type="submit" className="w-full py-4 bg-primary hover:bg-primary/80 text-white font-black uppercase tracking-widest rounded-2xl transition-all shadow-xl shadow-primary/20">
-                Enviar Mensagem
-              </button>
-            </form>
+            </div>
+          </div>
+        </section>
+
+      {/* CTA Final */}
+      <section className="py-32 px-6 bg-primary relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] -mr-48 -mt-48" />
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <h2 className="text-3xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase leading-[1.1]">
+            "Transformamos o ativo imobilizado em informação confiável, auditável e valorizada."
+          </h2>
+          <p className="text-white/80 text-xl md:text-2xl mb-12 font-medium max-w-3xl mx-auto">
+            Não deixe para amanhã a segurança que sua auditoria exige hoje. Fale com um especialista e descubra o poder da inteligência patrimonial.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+             <a href="#contact" className="px-12 py-6 bg-[#0b1220] text-white font-black uppercase tracking-widest shadow-2xl rounded-2xl hover:scale-105 transition-all text-sm text-center">Agendar Demonstração</a>
+             <a href="#contact" className="px-12 py-6 border-2 border-[#0b1220] text-[#0b1220] font-black uppercase tracking-widest rounded-2xl hover:bg-[#0b1220]/10 transition-all text-sm text-center">Solicitar Proposta</a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/5">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 opacity-50">
-          <div className="flex items-center gap-4">
-            <span className="font-bold text-2xl tracking-tighter uppercase whitespace-nowrap text-white">Asset <span className="text-primary">Solution</span></span>
+      <footer className="py-20 bg-[#080e1a] border-t border-white/5 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-1 md:col-span-2">
+              <span className="font-extrabold text-5xl tracking-tighter uppercase text-white mb-6 block">Asset <span className="text-primary">Solution</span></span>
+              <p className="text-muted text-sm max-w-sm leading-relaxed font-medium italic">
+                Líder nacional em inteligência patrimonial, combinando precisão técnica normativa com a agilidade da transformação digital.
+              </p>
+            </div>
+            <div>
+               <h5 className="text-[10px] font-black uppercase tracking-widest text-white mb-6">Links Rápidos</h5>
+               <ul className="space-y-4 text-xs font-bold text-muted uppercase tracking-widest">
+                  <li><a href="#about" className="hover:text-primary transition-colors">Sobre</a></li>
+                  <li><a href="#services" className="hover:text-primary transition-colors">Serviços</a></li>
+                  <li><a href="#solutions" className="hover:text-primary transition-colors">Soluções</a></li>
+                  <li><a href="#contact" className="hover:text-primary transition-colors">Contato</a></li>
+               </ul>
+            </div>
+            <div>
+               <h5 className="text-[10px] font-black uppercase tracking-widest text-white mb-6">Legal</h5>
+               <ul className="space-y-4 text-xs font-bold text-muted uppercase tracking-widest">
+                  <li><button onClick={() => setModalContent('privacy')} className="hover:text-primary transition-colors">Privacidade</button></li>
+                  <li><button onClick={() => setModalContent('terms')} className="hover:text-primary transition-colors">Termos de Uso</button></li>
+               </ul>
+            </div>
           </div>
-          <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-center">© 2024 - Asset Solution • CNPJ 46.141.266/0001-55 • Inteligência Patrimonial</p>
-          <div className="flex gap-6 text-xs font-bold uppercase tracking-widest">
-             <button onClick={() => setModalContent('privacy')} className="hover:text-primary transition-colors">Privacidade</button>
-             <button onClick={() => setModalContent('terms')} className="hover:text-primary transition-colors">Termos</button>
+          
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-muted text-center md:text-left">
+              ASSET SOLUTION © 2026 – Todos os direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
 
-      {/* Floating Buttons */}
-      <div className="fixed bottom-6 right-6 z-[100] flex flex-col gap-4">
+      {/* Floating Elements */}
+      <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
         <AnimatePresence>
           {showScrollTop && (
             <motion.button
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
               onClick={scrollToTop}
-              className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all shadow-2xl"
-              title="Voltar ao Topo"
+              className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-2xl"
             >
               <ArrowUp size={24} />
             </motion.button>
           )}
         </AnimatePresence>
-        
         <motion.a
           href="https://wa.me/556521298243"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-16 h-16 bg-[#25d366] text-white rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(37,211,102,0.4)] relative group"
+          className="w-16 h-16 bg-[#25d366] text-white rounded-[24px] flex items-center justify-center shadow-2xl shadow-green-500/20 group relative"
         >
           <MessageCircle size={32} />
-          <span className="absolute right-full mr-4 px-4 py-2 bg-white text-[#25d366] rounded-xl text-xs font-black uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-xl pointer-events-none">
-            Fale Conosco no WhatsApp
+          <span className="absolute right-full mr-6 px-4 py-2 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl pointer-events-none italic">
+            Fale com um especialista
           </span>
         </motion.a>
       </div>
@@ -2313,42 +2508,39 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setModalContent(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-[#0b1220]/90 backdrop-blur-sm"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-[#0b1220] border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-[32px] p-8 md:p-12 relative z-10"
+              className="relative w-full max-w-2xl bg-panel/95 backdrop-blur-xl border border-white/10 p-10 md:p-16 rounded-[48px] shadow-3xl max-h-[80vh] overflow-y-auto"
             >
-              <h3 className="text-2xl font-black uppercase mb-8">
+              <h2 className="text-3xl font-black uppercase tracking-tighter mb-8 italic">
                 {modalContent === 'privacy' ? 'Política de Privacidade' : 'Termos de Uso'}
-              </h3>
-              <div className="text-muted space-y-4 text-sm leading-relaxed">
-                <p className="font-bold text-white">Última atualização: Julho de 2024</p>
+              </h2>
+              <div className="prose prose-invert prose-sm text-muted leading-relaxed space-y-6">
                 {modalContent === 'privacy' ? (
                   <>
-                    <p>A Asset Solution está comprometida com a proteção de sua privacidade. Esta Política de Privacidade explica como coletamos, usamos e protegemos suas informações.</p>
-                    <p><strong>1. Coleta de Informações:</strong> Coletamos informações que você nos fornece diretamente através de formulários de contato ou ao contratar nossos serviços patrimoniais.</p>
-                    <p><strong>2. Uso de Dados:</strong> Seus dados são utilizados exclusivamente para a prestação de serviços de gestão de ativos, avaliações e suporte técnico do sistema AssetManager Pro.</p>
-                    <p><strong>3. Proteção:</strong> Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados contra acesso não autorizado ou alteração.</p>
-                    <p><strong>4. Seus Direitos:</strong> Você tem o direito de solicitar o acesso, correção ou exclusão de seus dados pessoais a qualquer momento através de nossos canais de atendimento.</p>
+                    <p>A Asset Solution está comprometida com a proteção de seus dados patrimoniais e informações sensíveis.</p>
+                    <p><strong>1. Coleta:</strong> Coletamos dados necessários para a identificação patrimonial e contato comercial.</p>
+                    <p><strong>2. LGPD:</strong> Em total conformidade com a Lei Geral de Proteção de Dados, garantimos a auditabilidade e o sigilo de todas as bases enviadas.</p>
+                    <p><strong>3. Armazenamento:</strong> Utilizamos servidores seguros com criptografia de ponta a ponta para o Asset Manager Pro.</p>
                   </>
                 ) : (
                   <>
-                    <p>Ao utilizar os serviços e sistemas da Asset Solution, você concorda com os seguintes termos e condições:</p>
-                    <p><strong>1. Uso do Sistema:</strong> O acesso ao AssetManager Pro é concedido sob licença para gestão patrimonial interna da empresa contratante.</p>
-                    <p><strong>2. Propriedade Intelectual:</strong> Todos os softwares, marcas e metodologias são propriedade exclusiva da Asset Solution.</p>
-                    <p><strong>3. Responsabilidade:</strong> A Asset Solution garante a precisão técnica de seus laudos e levantamentos, desde que as informações fornecidas pelo cliente sejam verídicas.</p>
-                    <p><strong>4. Confidencialidade:</strong> Ambas as partes comprometem-se a manter sigilo absoluto sobre informações estratégicas e dados patrimoniais acessados durante a vigência do contrato.</p>
+                    <p>Ao contratar os serviços da Asset Solution, você concorda com nossas metodologias e termos de software.</p>
+                    <p><strong>1. Uso de Licença:</strong> O login fornecido é individual e intransferível.</p>
+                    <p><strong>2. Propriedade Intelectual:</strong> Todos os softwares e marcas são de propriedade exclusiva da Asset Solution.</p>
+                    <p><strong>3. Responsabilidade Técnica:</strong> Nossos laudos são emitidos com ART/RRT e seguem rigorosamente as normas CPC/ABNT.</p>
                   </>
                 )}
               </div>
               <button 
                 onClick={() => setModalContent(null)}
-                className="mt-12 w-full py-4 bg-white/5 border border-white/10 rounded-2xl font-black uppercase tracking-widest hover:bg-white/10 transition-all text-xs"
+                className="mt-12 w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:bg-primary hover:text-white transition-all text-xs italic"
               >
-                Fechar
+                Entendido e Fechar
               </button>
             </motion.div>
           </div>
@@ -2357,7 +2549,6 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
     </div>
   );
 }
-
 function InternalApp({ onGoBack }: { onGoBack: () => void }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -3119,13 +3310,13 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
       )}>
         <div className="p-6 flex flex-col gap-6 border-b border-line">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/40">
               <Package className="text-white" size={28} />
             </div>
             {!isSidebarCollapsed && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <h1 className="font-extrabold text-xl leading-none tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></h1>
-                <span className="text-[10px] text-muted uppercase tracking-tighter font-bold">Enterprise Pro</span>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col">
+                <h1 className="font-black text-3xl leading-none tracking-tighter uppercase text-white italic">Asset</h1>
+                <span className="text-[9px] text-primary uppercase tracking-[0.3em] font-black italic -mt-0.5 ml-0.5">Manager Pro</span>
               </motion.div>
             )}
           </div>
@@ -3271,6 +3462,13 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
             <LogOut size={20} />
             {!isSidebarCollapsed && <span className="font-medium">Sair</span>}
           </button>
+        </div>
+        <div className="p-6 border-t border-line mt-auto">
+          {!isSidebarCollapsed && (
+            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-muted text-center italic opacity-40 hover:opacity-100 transition-opacity">
+              Developed by <span className="text-primary">ASSET SOLUTION</span>
+            </p>
+          )}
         </div>
       </aside>
 
