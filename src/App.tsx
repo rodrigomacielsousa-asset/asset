@@ -8,6 +8,7 @@ import {
   PlusCircle, 
   ArrowLeftRight, 
   Trash2, 
+  ArrowLeft,
   Package, 
   FileText, 
   BarChart3, 
@@ -1752,7 +1753,667 @@ function ReportsView({
   );
 }
 
-function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
+function Portal({ 
+  onSelectAsset, 
+  onSelectAccounting,
+  onEnterSystem
+}: { 
+  onSelectAsset: () => void, 
+  onSelectAccounting: () => void,
+  onEnterSystem: () => void
+}) {
+  return (
+    <div className="min-h-screen bg-[#080e1a] text-white flex flex-col items-center justify-center p-6 py-20 relative overflow-hidden font-sans">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center mb-16 relative z-10 max-w-5xl px-4"
+      >
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6 italic">
+          TRÍADE <span className="text-primary italic">GROUP</span>
+        </h1>
+        <p className="text-muted text-sm md:text-lg font-bold uppercase tracking-widest opacity-80 leading-relaxed italic max-w-3xl mx-auto mb-4">
+          Ecossistema de soluções integradas em inteligência patrimonial, contabilidade estratégica e tecnologia corporativa, com atuação multissetorial, focado em controle, governança e crescimento sustentável.
+        </p>
+        <p className="text-primary text-[10px] md:text-xs font-black uppercase tracking-[0.4em] italic opacity-60">
+          Conheça nossas soluções especializadas.
+        </p>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl w-full relative z-10 mb-20 px-4">
+        <PortalCard 
+          label="CONSULTORIA"
+          title="ASSET SOLUTION"
+          subtitle="Gestão e Inteligência Patrimonial"
+          desc="Soluções estratégicas para controle, organização, valorização e governança do patrimônio empresarial, apoiando a tomada de decisão e a eficiência operacional."
+          icon={<Package size={44} />}
+          onClick={onSelectAsset}
+          color="amber"
+        />
+        <PortalCard 
+          label="SOFTWARE"
+          title="ASSET SYSTEM"
+          subtitle="Gestão de Ativos em Tempo Real"
+          desc="Plataforma enterprise PRO para inventário, controle, rastreabilidade e análise de ativos, integrando dados patrimoniais em tempo real para suporte à gestão, auditoria e decisão estratégica."
+          icon={<Monitor size={44} />}
+          onClick={onEnterSystem}
+          color="purple"
+        />
+        <PortalCard 
+          label="SERVIÇOS"
+          title="ASSET ACCOUNTING"
+          subtitle="Contabilidade como plataforma de apoio à gestão empresarial"
+          desc="Modelo de contabilidade CaaS estratégica orientado a dados, conformidade e informação gerencial, atuando como base de apoio contínuo à gestão e ao desempenho do negócio."
+          icon={<Briefcase size={44} />}
+          onClick={onSelectAccounting}
+          color="blue"
+        />
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="relative z-10 text-center flex flex-col items-center gap-4"
+      >
+        <button 
+          onClick={() => window.open('https://www.asscon.org.br', '_blank')}
+          className="group flex flex-col items-center gap-3"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase font-black tracking-[0.3em] text-muted/40 italic">Apoio pass:</span>
+            <span className="text-xl md:text-4xl font-black tracking-tighter uppercase text-primary transition-colors flex items-center gap-2 italic">
+              ASSCON <ArrowUpRight size={24} className="text-muted group-hover:text-primary transition-all" />
+            </span>
+          </div>
+          <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-muted/50 group-hover:text-white/50 transition-colors italic">
+            ASSOCIAÇÃO NACIONAL DOS PROFISSIONAIS DA CONTABILIDADE
+          </span>
+        </button>
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="mt-20 text-[10px] uppercase font-black tracking-[0.4em] text-muted/10 italic"
+      >
+        © 2026 – Tríade Group – Todos os direitos reservados.
+      </motion.div>
+    </div>
+  );
+}
+
+function PortalCard({ title, subtitle, badge, desc, icon, onClick, color, isExternal, label }: any) {
+  const colors: any = {
+    amber: "hover:border-amber-500/40 hover:shadow-amber-500/5",
+    blue: "hover:border-blue-500/40 hover:shadow-blue-500/5",
+    purple: "hover:border-purple-500/40 hover:shadow-purple-500/5"
+  };
+
+  const iconColors: any = {
+    amber: "text-amber-500 bg-amber-500/10",
+    blue: "text-blue-500 bg-blue-500/10",
+    purple: "text-purple-500 bg-purple-500/10"
+  };
+
+  return (
+    <motion.button
+      whileHover={{ y: -12 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={onClick}
+      className={cn(
+        "bg-white/[0.03] border border-white/5 rounded-[48px] p-10 md:p-12 text-left transition-all group flex flex-col gap-8 h-full shadow-2xl relative overflow-hidden backdrop-blur-sm",
+        colors[color]
+      )}
+    >
+      <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-white/5 to-transparent blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      
+      <div className="flex justify-between items-start">
+        <div className={cn("w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl", iconColors[color])}>
+          {icon}
+        </div>
+        <span className={cn("text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border opacity-40 group-hover:opacity-100 transition-opacity", 
+          color === 'amber' ? 'border-amber-500/30 text-amber-500' :
+          color === 'blue' ? 'border-blue-500/30 text-blue-500' :
+          'border-purple-500/30 text-purple-500'
+        )}>
+          {label}
+        </span>
+      </div>
+      
+      <div className="relative z-10 flex flex-col gap-2">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h3 className="text-3xl font-black tracking-tighter uppercase transition-colors flex items-center gap-2 italic leading-none text-white">
+            {title}
+            {isExternal && <ArrowUpRight size={20} className="text-muted group-hover:text-white transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />}
+          </h3>
+          {badge && (
+            <span className="text-[10px] font-black uppercase tracking-widest bg-white/10 text-white px-3 py-1 rounded-full italic">
+              {badge}
+            </span>
+          )}
+        </div>
+        <p className="text-primary font-black text-[11px] leading-tight uppercase tracking-wider italic">
+          {subtitle}
+        </p>
+      </div>
+
+      <div className="relative z-10">
+        <p className="text-muted font-medium text-xs md:text-sm leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity">
+          {desc}
+        </p>
+      </div>
+
+      <div className="mt-auto pt-8">
+        <div className={cn("w-12 h-1.5 bg-white/5 rounded-full group-hover:w-full transition-all duration-700 ease-in-out",
+          color === 'amber' ? 'group-hover:bg-amber-500' :
+          color === 'blue' ? 'group-hover:bg-blue-500' :
+          'group-hover:bg-purple-500'
+        )} />
+      </div>
+    </motion.button>
+  );
+}
+
+function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPortal }: any) {
+  const [modalContent, setModalContent] = useState<string | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  return (
+    <div className="bg-[#0b1220] text-white selection:bg-primary/30 font-sans scroll-smooth">
+      {/* Mini Nav */}
+      <nav className="fixed top-0 left-0 w-full z-[100] px-6 py-6 transition-all duration-500 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <button onClick={onSelectPortal} className="flex items-center gap-4 group text-left">
+            <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-all shadow-lg">
+              <LogOut size={20} className="text-primary group-hover:text-white rotate-180" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-black text-3xl tracking-tighter uppercase text-white italic leading-none">ASSET</span>
+              <span className="font-black text-xl tracking-tighter uppercase text-primary italic leading-none mt-1">ACCOUNTING</span>
+            </div>
+          </button>
+          
+          <div className="hidden md:flex items-center gap-6">
+            <a href="#about" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Inovação</a>
+            <span className="text-white/10 text-xs">|</span>
+            <a href="#caas" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Contabilidade</a>
+            <span className="text-white/10 text-xs">|</span>
+            <a href="#caas" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Como Funciona</a>
+            <span className="text-white/10 text-xs">|</span>
+            <a href="#faq" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Dúvidas</a>
+            <span className="text-white/10 text-xs">|</span>
+            <a href="#contact" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Contato</a>
+            <button 
+              onClick={onEnterSystem}
+              className="ml-6 px-6 py-3 bg-primary text-black font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all text-[10px] shadow-2xl shadow-primary/30 italic"
+            >
+              Acessar Sistema
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="pt-60 pb-40 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[160px] -mr-96 -mt-96" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 italic">
+                Modern Accounting Infrastructure
+              </span>
+              <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[0.95] tracking-tighter uppercase italic">
+                <span className="text-white">A contabilidade</span> <br /> 
+                <span className="text-white">da sua empresa,</span> <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">reestruturada como plataforma.</span>
+              </h1>
+              <p className="text-muted text-lg mb-10 max-w-xl leading-relaxed font-medium italic">
+                Accounting as a Service (CaaS) combina contabilidade especializada, processos estruturados e tecnologia própria para transformar conformidade fiscal em inteligência de gestão.
+              </p>
+              <div className="flex flex-wrap gap-8">
+                <a href="#contact" className="px-12 py-6 bg-white text-black font-black uppercase tracking-widest rounded-3xl hover:bg-primary hover:text-white transition-all text-xs shadow-2xl shadow-white/5 italic">
+                  Solicitar proposta CaaS
+                </a>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="relative"
+            >
+              <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[64px] border border-white/10 p-1 bg-[#0d1627] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden group">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454165833767-1316b321d021?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-20 group-hover:scale-110 transition-transform duration-[2000ms] ease-out" />
+                <div className="relative h-full flex flex-col p-8 justify-center gap-6">
+                  {/* ESCALABILIDADE */}
+                  <motion.div 
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                    className="p-6 bg-white/[0.03] backdrop-blur-xl rounded-[32px] border border-white/10 shadow-2xl relative overflow-hidden group/card max-w-[280px]"
+                  >
+                    <motion.div 
+                      animate={{ x: ['-200%', '200%'] }} 
+                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-20deg]"
+                    />
+                    <TrendingUp className="text-primary mb-3" size={28} />
+                    <h3 className="text-lg font-black uppercase italic mb-1 tracking-tighter text-white">Escalabilidade</h3>
+                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Sua estrutura contábil cresce junto com a operação, sem necessidade de ampliar equipe.</p>
+                  </motion.div>
+
+                  {/* REAL-TIME */}
+                  <motion.div 
+                    animate={{ x: [0, 8, 0] }}
+                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
+                    className="p-6 bg-primary/10 backdrop-blur-xl rounded-[32px] border border-primary/20 self-end max-w-[260px] shadow-2xl relative translate-x-4 overflow-hidden group/card"
+                  >
+                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-pulse z-10 text-white shadow-lg">
+                      <Zap size={14} />
+                    </div>
+                    <h3 className="text-lg font-black uppercase italic mb-1 tracking-tighter text-white">Real-Time</h3>
+                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Indicadores consolidados e atualizados em D+1, acessíveis de forma segura.</p>
+                  </motion.div>
+                  
+                  {/* ESPECIALISTAS */}
+                  <motion.div 
+                    animate={{ y: [0, 8, 0], rotate: [-0.5, 0.5, -0.5] }}
+                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
+                    className="p-6 bg-white/[0.03] backdrop-blur-xl rounded-[32px] border border-white/10 shadow-2xl absolute bottom-8 left-8 max-w-[240px] overflow-hidden group/card z-20"
+                  >
+                    <Users className="text-purple-400 mb-3" size={24} />
+                    <h3 className="text-base font-black uppercase italic mb-1 tracking-tighter text-white">Especialistas</h3>
+                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Suporte técnico de contadores especialistas com visão estratégica contínua.</p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro CaaS */}
+      <section id="caas" className="py-40 px-6 bg-[#080e1a] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl">
+            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Discovery phase</h2>
+            <h3 className="text-4xl md:text-7xl font-black mb-12 leading-tight italic uppercase tracking-tighter">O que é Contabilidade como Serviço (CaaS)?</h3>
+            <div className="space-y-8 text-muted text-xl leading-relaxed font-medium italic">
+              <p>
+                Contabilidade como Serviço (CaaS) é um modelo moderno de prestação contábil que integra especialistas, processos padronizados e infraestrutura tecnológica em uma única plataforma.
+              </p>
+              <p>
+                Diferente da contabilidade tradicional, o CaaS opera de forma contínua, digital e estruturada, entregando informações contábeis, fiscais e financeiras integradas, com acesso remoto e alto nível de confiabilidade.
+              </p>
+              <p className="text-white border-l-4 border-primary pl-10 py-4 bg-white/5 rounded-r-3xl">
+                O modelo elimina a separação entre o operacional, o fiscal e o estratégico, permitindo que a contabilidade deixe de ser apenas uma obrigação legal e passe a apoiar ativamente a gestão empresarial.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-32">
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="p-16 bg-white/[0.02] border border-white/5 rounded-[64px] transition-all group shadow-2xl"
+            >
+              <h4 className="text-3xl font-black uppercase mb-8 italic text-white/20 group-hover:text-white transition-colors tracking-tighter">Contabilidade Tradicional</h4>
+              <p className="text-muted text-lg leading-relaxed italic font-medium">
+                Modelo baseado em processos manuais, troca de arquivos, planilhas e informações desconectadas. Entrega dados com atraso, baixa transparência, dependência de equipe interna e dificuldade para escalar operações sem aumento significativo de custos e riscos.
+              </p>
+            </motion.div>
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="p-16 bg-primary/[0.03] border border-primary/10 rounded-[64px] transition-all group shadow-2xl shadow-primary/5"
+            >
+              <h4 className="text-3xl font-black uppercase mb-8 italic text-primary tracking-tighter">CaaS (Moderno)</h4>
+              <p className="text-muted text-lg leading-relaxed italic font-medium">
+                Modelo integrado, contínuo e orientado por dados. Processos automatizados, especialistas dedicados e informações consolidadas em ambiente seguro, com previsibilidade, escalabilidade e apoio à tomada de decisão.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-32">
+            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Frequent inquiries</h2>
+            <h3 className="text-4xl md:text-7xl font-black mb-10 leading-tight italic uppercase tracking-tighter">Esclarecendo o Modelo</h3>
+          </div>
+          
+          <div className="max-w-4xl mx-auto space-y-6">
+            <FAQItem 
+              q="CaaS: como ajuda minha empresa?"
+              a="O CaaS reduz riscos, aumenta eficiência operacional e transforma dados contábeis em apoio real à gestão, melhorando a tomada de decisão e o controle do negócio."
+            />
+            <FAQItem 
+              q="Quais serviços o CaaS oferece?"
+              a="Serviços contábeis completos, área fiscal, obrigações acessórias, relatórios gerenciais, dashboards financeiros e suporte técnico especializado."
+            />
+            <FAQItem 
+              q="Custos em comparação ao modelo tradicional?"
+              a="Modelo previsível e escalável, geralmente mais eficiente que estruturas internas fragmentadas, reduzindo retrabalho e custos ocultos."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="py-40 px-6 bg-[#0b1220] relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-40">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black mb-12 leading-[1.1] tracking-tighter uppercase italic">
+                <span className="text-white">Leve sua </span> <br />
+                <span className="text-white">contabilidade para</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">um modelo estruturado, moderno e orientado por dados.</span>
+              </h2>
+              <p className="text-muted text-xl mb-16 leading-relaxed max-w-md italic">
+                Pronto para dar o próximo passo? Nossa equipe de especialistas aguarda seu contato.
+              </p>
+              
+              <div className="space-y-12">
+                <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.location.href = 'mailto:helio@assetbr.com.br'}>
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
+                    <Mail size={24} className="text-primary group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Fale com um especialista</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">helio@assetbr.com.br</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.open('https://wa.me/5565996414400', '_blank')}>
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
+                    <MessageCircle size={24} className="text-primary group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">WhatsApp Business</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">+55 (65) 99641-4400</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6 group">
+                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center shrink-0 shadow-xl">
+                    <MapPin size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Visite nossa sede</p>
+                    <p className="text-lg font-black italic max-w-xs leading-tight">Rua Trinta e Dois, Sl 201 Bloco 09, Santa Cruz II – Cuiabá/MT</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/[0.02] border border-white/10 p-12 md:p-16 rounded-[64px] shadow-3xl relative">
+               <div className="absolute top-0 left-0 w-full h-3 bg-primary rounded-t-full" />
+               <h3 className="text-3xl font-black uppercase mb-12 tracking-tighter italic">Solicitar proposta CaaS</h3>
+               <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-[0.4em] text-muted/50 ml-1 italic">Organização</label>
+                    <input type="text" placeholder="Nome da organização" className="w-full bg-[#080e1a] border border-white/5 rounded-3xl p-6 focus:border-primary outline-none text-white transition-all shadow-inner font-medium italic" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-[0.4em] text-muted/50 ml-1 italic">Email corporativo</label>
+                    <input type="email" placeholder="seuemail@empresa.com.br" className="w-full bg-[#080e1a] border border-white/5 rounded-3xl p-6 focus:border-primary outline-none text-white transition-all shadow-inner font-medium italic" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-[0.4em] text-muted/50 ml-1 italic">Mensagem</label>
+                    <textarea rows={5} placeholder="Como o CaaS pode apoiar sua empresa hoje?" className="w-full bg-[#080e1a] border border-white/5 rounded-3xl p-6 focus:border-primary outline-none text-white transition-all resize-none shadow-inner font-medium italic" />
+                  </div>
+                  <button type="submit" className="w-full py-6 bg-primary text-white font-black uppercase tracking-widest rounded-3xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl shadow-primary/20 italic">Fale com um especialista CaaS</button>
+                </form>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <GroupFooter 
+        brand="ASSET ACCOUNTING" 
+        onSelectAsset={onSelectAsset}
+        onSelectAccounting={() => {}}
+        onSelectPortal={onSelectPortal}
+        setModalContent={setModalContent}
+        onEnterSystem={onEnterSystem}
+      />
+
+      {/* Floating Elements */}
+      <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              onClick={scrollToTop}
+              className="w-16 h-16 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-3xl flex items-center justify-center hover:bg-primary transition-all shadow-2xl"
+            >
+              <ArrowUp size={28} />
+            </motion.button>
+          )}
+        </AnimatePresence>
+        <motion.a
+          href="https://wa.me/5565996414400"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.1 }}
+          className="w-20 h-20 bg-[#25d366] text-white rounded-[32px] flex items-center justify-center shadow-2xl shadow-green-500/20 group relative overflow-hidden"
+        >
+          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2 }}>
+            <MessageCircle size={40} />
+          </motion.div>
+          <span className="absolute right-full mr-8 px-6 py-3 bg-white text-black text-[10px] font-black uppercase tracking-[0.4em] rounded-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all shadow-2xl pointer-events-none italic translate-x-4 group-hover:translate-x-0">
+            Dúvidas? Fale com Hélio
+          </span>
+        </motion.a>
+      </div>
+
+      <AnimatePresence>
+        {modalContent && (
+          <TermsModal content={modalContent} onClose={() => setModalContent(null)} />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function FAQItem({ q, a }: { q: string, a: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border border-white/5 bg-white/[0.02] rounded-[32px] overflow-hidden shadow-2xl transition-all hover:bg-white/[0.04]">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-10 text-left group"
+      >
+        <span className="text-xl font-black uppercase tracking-tight group-hover:text-primary transition-colors italic leading-tight">{q}</span>
+        <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            className="text-primary p-3 bg-white/5 rounded-2xl group-hover:bg-primary group-hover:text-white transition-all shadow-lg"
+          >
+          <ChevronDown size={28} />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "circOut" }}
+          >
+            <div className="px-10 pb-10 text-muted text-lg font-medium italic leading-relaxed pt-2">
+              {a}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function GroupFooter({ brand, onSelectAsset, onSelectAccounting, onSelectPortal, setModalContent, onEnterSystem }: any) {
+  return (
+    <footer className="py-40 bg-[#080e1a] border-t border-white/5 px-6 font-sans">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-24 mb-40">
+          <div className="col-span-1 md:col-span-2">
+            <button onClick={onSelectPortal} className="text-left group mb-10 transition-transform hover:scale-105 active:scale-95">
+              <span className="font-black text-5xl md:text-7xl tracking-tighter uppercase text-white block italic">
+                {brand === 'ASSET SOLUTION' ? (
+                  <>ASSET <span className="text-primary">SOLUTION</span></>
+                ) : brand === 'ASSET ACCOUNTING' ? (
+                  <>ASSET <span className="text-primary">ACCOUNTING</span></>
+                ) : brand}
+              </span>
+              {(brand === 'ASSET SOLUTION' || brand === 'ASSET ACCOUNTING') && (
+                <p className="text-primary font-black text-[10px] md:text-[12px] leading-tight uppercase tracking-widest italic mt-3 ml-1">
+                  {brand === 'ASSET SOLUTION' ? 'GESTÃO E INTELIGÊNCIA PATRIMONIAL' : 'CONTABILIDADE COMO PLATAFORMA DE APOIO À GESTÃO EMPRESARIAL'}
+                </p>
+              )}
+            </button>
+          </div>
+          
+          <div>
+            <h5 className="text-[10px] font-black uppercase tracking-[0.6em] text-white mb-12 opacity-30 italic">Links</h5>
+            <ul className="space-y-8">
+              <li>
+                <button onClick={onSelectAsset} className="text-sm font-black uppercase tracking-[0.3em] transition-all italic hover:text-primary text-muted">
+                  Asset Solution
+                </button>
+              </li>
+              <li>
+                <button onClick={onEnterSystem} className="text-sm font-black uppercase tracking-[0.3em] transition-all italic hover:text-primary text-muted">
+                  Asset System
+                </button>
+              </li>
+              <li>
+                <button onClick={onSelectAccounting} className="text-sm font-black uppercase tracking-[0.3em] transition-all italic hover:text-primary text-muted">
+                  Asset Accounting
+                </button>
+              </li>
+              <li>
+                <a href="https://www.asscon.org.br" target="_blank" rel="noopener noreferrer" className="text-sm font-black uppercase tracking-[0.3em] text-muted hover:text-primary transition-all italic flex items-center gap-3">
+                  Asscon
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+             <h5 className="text-[10px] font-black uppercase tracking-[0.6em] text-white mb-12 opacity-30 italic">Compliance</h5>
+             <ul className="space-y-8 text-sm font-black text-muted uppercase tracking-[0.3em]">
+                <li><button onClick={() => setModalContent('privacy')} className="hover:text-primary transition-all italic">Privacidade</button></li>
+                <li><button onClick={() => setModalContent('terms')} className="hover:text-primary transition-all italic">Termos de Uso</button></li>
+             </ul>
+          </div>
+        </div>
+        
+        <div className="pt-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="text-center md:text-left">
+            <p className="text-[10px] uppercase font-black tracking-[0.6em] text-primary italic mb-2">
+              {brand === 'ASSET ACCOUNTING' ? 'ASSET ACCOUNTING' : 'ASSET SOLUTION'}
+            </p>
+            {brand === 'ASSET ACCOUNTING' && (
+              <p className="text-white/40 text-[9px] uppercase font-bold tracking-[0.2em] mb-4">
+                Contabilidade como plataforma de apoio à gestão empresarial
+              </p>
+            )}
+            <p className="text-muted/50 text-[10px] font-bold uppercase tracking-widest">
+              © 2026 – Todos os direitos reservados
+            </p>
+          </div>
+          <div className="flex gap-10">
+            <a href="https://www.linkedin.com/company/assetsolution" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-all hover:scale-125">
+              <Linkedin size={28} />
+            </a>
+            <a href="https://www.instagram.com/assetbr/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-all hover:scale-125">
+              <Instagram size={28} />
+            </a>
+            <a href="https://www.facebook.com/AssetConsultoriaBR" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-all hover:scale-125">
+              <Facebook size={28} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function TermsModal({ content, onClose }: { content: string, onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-[#0b1220]/95 backdrop-blur-md"
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 40 }}
+        className="relative w-full max-w-4xl bg-[#0d1627]/98 backdrop-blur-3xl border border-white/10 p-16 md:p-24 rounded-[80px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] max-h-[85vh] overflow-y-auto custom-scrollbar"
+      >
+        <button onClick={onClose} className="absolute top-12 right-12 p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition-all text-white">
+          <X size={24} />
+        </button>
+        <h2 className="text-5xl font-black uppercase tracking-tighter mb-12 italic leading-none">
+          {content === 'privacy' ? 'Política de Privacidade' : 'Termos de Uso'}
+        </h2>
+        <div className="prose prose-invert prose-lg text-muted/80 leading-relaxed space-y-10 font-medium italic">
+          {content === 'privacy' ? (
+            <>
+              <p className="text-xl">O <span className="text-white">TRÍADE GROUP</span> e suas verticais de negócio (Asset Solution, Accounting, Asscon) estabelecem este compromisso com a proteção integral de dados.</p>
+              <div className="space-y-6">
+                <p><strong>1. Coleta Ética:</strong> Capturamos informações estritamente necessárias para a prestação de serviços de alta performance em inteligência patrimonial e fiscal.</p>
+                <p><strong>2. Rastreabilidade LGPD:</strong> Nossa infraestrutura é moldada pelo princípio de Privacy by Design, garantindo transparência total e conformidade com a regulamentação brasileira.</p>
+                <p><strong>3. Muralha Tecnológica:</strong> Seus dados são processados em ambientes isolados com camadas de criptografia AES-256 e monitoramento SOC 24/7.</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-xl">As disposições abaixo regem a relação comercial e técnica entre o <span className="text-white">TRÍADE GROUP</span> e seus parceiros corporativos.</p>
+              <div className="space-y-6">
+                <p><strong>1. Propriedade Intelectual:</strong> Metodologias, matrizes de cálculo e softwares proprietary como o Asset System são ativos intelectuais protegidos internacionalmente.</p>
+                <p><strong>2. Escopo de Entrega:</strong> Nossos laudos e consultorias são assinados por responsáveis técnicos qualificados, garantindo validade jurídica e contábil conforme as IFRS.</p>
+                <p><strong>3. Sigilo Industrial:</strong> Vigora o compromisso mútuo de confidencialidade sobre processos de negócio e segredos industriais expostos durante a prestação do serviço.</p>
+              </div>
+            </>
+          )}
+        </div>
+        <button 
+          onClick={onClose}
+          className="mt-20 w-full py-8 bg-white text-black font-black uppercase tracking-[0.4em] rounded-[32px] hover:bg-primary hover:text-white transition-all text-sm shadow-3xl italic"
+        >
+          Entendido e Aceito
+        </button>
+      </motion.div>
+    </div>
+  );
+}
+
+function LandingPage({ onEnterSystem, onSelectAccounting, onSelectPortal }: any) {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showAllAbout, setShowAllAbout] = React.useState(false);
   const [expandedService, setExpandedService] = React.useState<number | null>(null);
@@ -1811,7 +2472,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
 
   const solutions = [
     { 
-      title: 'Asset Manager Pro', 
+      title: 'Asset System', 
       description: 'A plataforma definitiva para gestão do ativo imobilizado. Controle total de aquisições, transferências, baixas e ordens de serviço com dashboards inteligentes.', 
       icon: <Monitor size={32} className="text-primary" />,
       features: ['Dashboards em tempo real', 'Sincronismo Online', 'Segurança Jurídica']
@@ -1828,7 +2489,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
     { title: 'DIRETRIZES & POLÍTICA', desc: 'Definição de normas, manuais de procedimentos e governança patrimonial.', icon: <Search size={20} /> },
     { title: 'INVENTÁRIO (SANEAMENTO)', desc: 'Levantamento físico padronizado e conciliação físico x contábil de alta precisão.', icon: <ClipboardCheck size={20} /> },
     { title: 'AVALIAÇÃO & VIDA ÚTIL', desc: 'Revisão técnica, laudos normativos e atendimento rigoroso ao CPC 27.', icon: <BarChart3 size={20} /> },
-    { title: 'GESTÃO (ASSETMANAGER PRO)', desc: 'Monitoramento contínuo, dashboards BI e controle total via software.', icon: <CheckCircle size={20} /> }
+    { title: 'ASSET SYSTEM', desc: 'Monitoramento contínuo, dashboards BI e controle total via software.', icon: <CheckCircle size={20} /> }
   ];
 
   const segments = [
@@ -1845,24 +2506,31 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
   return (
     <div className="min-h-screen bg-[#0b1220] text-white selection:bg-primary/30 scroll-smooth">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <span className="font-extrabold text-4xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
-        </div>
-        <div className="hidden lg:flex items-center gap-10 text-sm font-black uppercase tracking-[0.2em] text-muted">
-          <a href="#solutions" className="hover:text-primary transition-colors">Soluções</a>
-          <a href="#services" className="hover:text-primary transition-colors">Serviços</a>
-          <a href="#process" className="hover:text-primary transition-colors">Como Funciona</a>
-          <a href="#about" className="hover:text-primary transition-colors">Sobre</a>
-          <a href="#contact" className="hover:text-primary transition-colors">Contato</a>
-        </div>
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={onEnterSystem}
-            className="px-6 py-2 bg-primary text-white rounded-xl font-bold text-xs transition-all uppercase tracking-widest flex items-center gap-2 shadow-lg shadow-primary/30 hover:scale-105 active:scale-95 shadow-xl"
-          >
-            ACESSAR SISTEMA <ArrowUpRight size={16} />
-          </button>
+      <nav className="fixed top-0 w-full z-50 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/10 px-6 py-6 flex items-center transition-all duration-500">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <button onClick={onSelectPortal} className="flex items-center gap-4 group">
+              <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary transition-all shadow-lg">
+                <LogOut size={20} className="text-primary group-hover:text-white rotate-180" />
+              </div>
+              <span className="font-extrabold text-3xl tracking-tighter uppercase text-white italic">Asset <span className="text-primary italic">Solution</span></span>
+            </button>
+          </div>
+          <div className="hidden lg:flex items-center gap-12 text-[11px] font-black uppercase tracking-[0.2em] text-muted italic">
+            <a href="#solutions" className="hover:text-primary transition-colors">Soluções</a>
+            <a href="#services" className="hover:text-primary transition-colors">Serviços</a>
+            <a href="#process" className="hover:text-primary transition-colors">Como Funciona</a>
+            <a href="#about" className="hover:text-primary transition-colors">Sobre</a>
+            <a href="#contact" className="hover:text-primary transition-colors">Contato</a>
+          </div>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={onEnterSystem}
+              className="px-8 py-4 bg-primary text-black rounded-2xl font-black text-[11px] transition-all uppercase tracking-widest flex items-center gap-2 shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 italic"
+            >
+              ACESSAR SISTEMA <ArrowUpRight size={14} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -1880,8 +2548,10 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-widest mb-8">
               Excelência em Gestão Patrimonial
             </span>
-            <h1 className="text-4xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tighter uppercase">
-              Controle total <br /> do ativo imobilizado, <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">do inventário à decisão.</span>
+            <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[0.95] tracking-tighter uppercase italic">
+              <span className="text-white">Controle total</span> <br /> 
+              <span className="text-white">do ativo imobilizado,</span> <br /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">do inventário à decisão.</span>
             </h1>
             <p className="text-muted text-lg mb-10 max-w-lg leading-relaxed font-medium">
               A <strong>Asset Solution</strong> transforma o ativo imobilizado em informação confiável, auditável e valorizada, combinando consultoria especializada e tecnologia própria para eliminar riscos, retrabalho e perdas patrimoniais.
@@ -2312,8 +2982,8 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
                 </p>
                 <div className="grid grid-cols-2 gap-6 pt-6">
                    <div className="p-4 bg-white/5 border border-white/5 rounded-2xl">
-                      <p className="text-2xl font-black text-white italic">+R$ 20Bi</p>
-                      <p className="text-[10px] uppercase font-bold text-muted tracking-widest">Controlados</p>
+                      <p className="text-2xl font-black text-white italic">PP&E</p>
+                      <p className="text-[10px] uppercase font-bold text-muted tracking-widest">Property, Plant and Equipment</p>
                    </div>
                    <div className="p-4 bg-white/5 border border-white/5 rounded-2xl">
                       <p className="text-2xl font-black text-white italic">100%</p>
@@ -2331,9 +3001,9 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32">
             <div>
               <h2 className="text-3xl md:text-5xl font-black mb-12 leading-[1.1] tracking-tighter uppercase italic">
-                Controle total <br /> 
-                do ativo imobilizado, <br /> 
-                do inventário à decisão.
+                <span className="text-white">Controle total</span> <br /> 
+                <span className="text-white">do ativo imobilizado,</span> <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">do inventário à decisão.</span>
               </h2>
               <p className="text-muted text-xl mb-16 leading-relaxed max-w-md">
                 Pronto para dar o próximo passo? Nossa equipe de especialistas aguarda seu contato.
@@ -2356,17 +3026,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
                   </div>
                   <div>
                     <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">WhatsApp Business</p>
-                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">+55 (65) 2129-8243</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.open('tel:+5565992058727', '_blank')}>
-                  <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-primary transition-all shadow-xl">
-                    <Phone size={24} className="text-primary group-hover:text-white" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-muted font-bold uppercase tracking-[0.2em] mb-1">Telefone</p>
-                    <p className="text-xl font-black group-hover:text-primary transition-colors italic">+55 (65) 99205-8727</p>
+                    <p className="text-xl font-black group-hover:text-primary transition-colors italic leading-tight">+55 (65) 2129-8243<br />+55 (65) 99205-8727</p>
                   </div>
                 </div>
 
@@ -2428,47 +3088,21 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
             Não deixe para amanhã a segurança que sua auditoria exige hoje. Fale com um especialista e descubra o poder da inteligência patrimonial.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-             <a href="#contact" className="px-12 py-6 bg-[#0b1220] text-white font-black uppercase tracking-widest shadow-2xl rounded-2xl hover:scale-105 transition-all text-sm text-center">Agendar Demonstração</a>
-             <a href="#contact" className="px-12 py-6 border-2 border-[#0b1220] text-[#0b1220] font-black uppercase tracking-widest rounded-2xl hover:bg-[#0b1220]/10 transition-all text-sm text-center">Solicitar Proposta</a>
+             <a href="#contact" className="px-12 py-6 bg-[#0b1220] text-white font-black uppercase tracking-widest shadow-2xl rounded-2xl hover:scale-105 transition-all text-sm text-center italic">Agendar Demonstração</a>
+             <a href="#contact" className="px-12 py-6 border-2 border-[#0b1220] text-[#0b1220] font-black uppercase tracking-widest rounded-2xl hover:bg-[#0b1220]/10 transition-all text-sm text-center italic">Solicitar Proposta</a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-20 bg-[#080e1a] border-t border-white/5 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-            <div className="col-span-1 md:col-span-2">
-              <span className="font-extrabold text-5xl tracking-tighter uppercase text-white mb-6 block">Asset <span className="text-primary">Solution</span></span>
-              <p className="text-muted text-sm max-w-sm leading-relaxed font-medium italic">
-                Líder nacional em inteligência patrimonial, combinando precisão técnica normativa com a agilidade da transformação digital.
-              </p>
-            </div>
-            <div>
-               <h5 className="text-[10px] font-black uppercase tracking-widest text-white mb-6">Links Rápidos</h5>
-               <ul className="space-y-4 text-xs font-bold text-muted uppercase tracking-widest">
-                  <li><a href="#about" className="hover:text-primary transition-colors">Sobre</a></li>
-                  <li><a href="#services" className="hover:text-primary transition-colors">Serviços</a></li>
-                  <li><a href="#solutions" className="hover:text-primary transition-colors">Soluções</a></li>
-                  <li><a href="#contact" className="hover:text-primary transition-colors">Contato</a></li>
-               </ul>
-            </div>
-            <div>
-               <h5 className="text-[10px] font-black uppercase tracking-widest text-white mb-6">Legal</h5>
-               <ul className="space-y-4 text-xs font-bold text-muted uppercase tracking-widest">
-                  <li><button onClick={() => setModalContent('privacy')} className="hover:text-primary transition-colors">Privacidade</button></li>
-                  <li><button onClick={() => setModalContent('terms')} className="hover:text-primary transition-colors">Termos de Uso</button></li>
-               </ul>
-            </div>
-          </div>
-          
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-muted text-center md:text-left">
-              ASSET SOLUTION © 2026 – Todos os direitos reservados.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <GroupFooter 
+        brand="ASSET SOLUTION" 
+        onSelectAsset={() => {}}
+        onSelectAccounting={onSelectAccounting}
+        onSelectPortal={onSelectPortal}
+        setModalContent={setModalContent}
+        onEnterSystem={onEnterSystem}
+      />
 
       {/* Floating Elements */}
       <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
@@ -2479,9 +3113,9 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               onClick={scrollToTop}
-              className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-2xl"
+              className="w-16 h-16 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-3xl flex items-center justify-center hover:bg-primary transition-all shadow-2xl"
             >
-              <ArrowUp size={24} />
+              <ArrowUp size={28} />
             </motion.button>
           )}
         </AnimatePresence>
@@ -2490,10 +3124,12 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.1 }}
-          className="w-16 h-16 bg-[#25d366] text-white rounded-[24px] flex items-center justify-center shadow-2xl shadow-green-500/20 group relative"
+          className="w-20 h-20 bg-[#25d366] text-white rounded-[32px] flex items-center justify-center shadow-2xl shadow-green-500/20 group relative overflow-hidden"
         >
-          <MessageCircle size={32} />
-          <span className="absolute right-full mr-6 px-4 py-2 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl pointer-events-none italic">
+          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2 }}>
+            <MessageCircle size={40} />
+          </motion.div>
+          <span className="absolute right-full mr-8 px-6 py-3 bg-white text-black text-[10px] font-black uppercase tracking-[0.4em] rounded-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all shadow-2xl pointer-events-none italic translate-x-4 group-hover:translate-x-0">
             Fale com um especialista
           </span>
         </motion.a>
@@ -2502,48 +3138,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
       {/* Privacy/Terms Modal */}
       <AnimatePresence>
         {modalContent && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setModalContent(null)}
-              className="absolute inset-0 bg-[#0b1220]/90 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-panel/95 backdrop-blur-xl border border-white/10 p-10 md:p-16 rounded-[48px] shadow-3xl max-h-[80vh] overflow-y-auto"
-            >
-              <h2 className="text-3xl font-black uppercase tracking-tighter mb-8 italic">
-                {modalContent === 'privacy' ? 'Política de Privacidade' : 'Termos de Uso'}
-              </h2>
-              <div className="prose prose-invert prose-sm text-muted leading-relaxed space-y-6">
-                {modalContent === 'privacy' ? (
-                  <>
-                    <p>A Asset Solution está comprometida com a proteção de seus dados patrimoniais e informações sensíveis.</p>
-                    <p><strong>1. Coleta:</strong> Coletamos dados necessários para a identificação patrimonial e contato comercial.</p>
-                    <p><strong>2. LGPD:</strong> Em total conformidade com a Lei Geral de Proteção de Dados, garantimos a auditabilidade e o sigilo de todas as bases enviadas.</p>
-                    <p><strong>3. Armazenamento:</strong> Utilizamos servidores seguros com criptografia de ponta a ponta para o Asset Manager Pro.</p>
-                  </>
-                ) : (
-                  <>
-                    <p>Ao contratar os serviços da Asset Solution, você concorda com nossas metodologias e termos de software.</p>
-                    <p><strong>1. Uso de Licença:</strong> O login fornecido é individual e intransferível.</p>
-                    <p><strong>2. Propriedade Intelectual:</strong> Todos os softwares e marcas são de propriedade exclusiva da Asset Solution.</p>
-                    <p><strong>3. Responsabilidade Técnica:</strong> Nossos laudos são emitidos com ART/RRT e seguem rigorosamente as normas CPC/ABNT.</p>
-                  </>
-                )}
-              </div>
-              <button 
-                onClick={() => setModalContent(null)}
-                className="mt-12 w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:bg-primary hover:text-white transition-all text-xs italic"
-              >
-                Entendido e Fechar
-              </button>
-            </motion.div>
-          </div>
+          <TermsModal content={modalContent} onClose={() => setModalContent(null)} />
         )}
       </AnimatePresence>
     </div>
@@ -3214,72 +3809,100 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
               <Package className="text-white" />
             </div>
-            <div>
-              <h1 className="text-4xl font-black text-white tracking-tighter">Asset <span className="text-primary">Solution</span></h1>
-              <p className="text-sm text-muted mt-1 uppercase tracking-widest font-medium">Gestão Inteligente de Ativos</p>
-            </div>
+              <div className="flex flex-col">
+                <h1 className="text-3xl font-black text-white tracking-tighter uppercase italic leading-none">Asset System</h1>
+                <span className="text-[10px] text-primary uppercase tracking-[0.4em] font-black italic mt-1 ml-0.5">Enterprise Pro</span>
+              </div>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             {loginError && (
-              <div className="p-3 bg-danger/10 border border-danger/20 rounded-xl text-danger text-[10px] font-bold uppercase text-center">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-3 bg-danger/10 border border-danger/20 rounded-xl text-danger text-[10px] font-black uppercase text-center italic"
+              >
                 {loginError}
-              </div>
+              </motion.div>
             )}
             <div>
-              <label className="block text-xs font-medium text-muted mb-1">E-mail</label>
+              <label className="block text-[9px] font-black text-muted mb-1 uppercase tracking-[0.2em] ml-1">E-mail Corporativo</label>
               <input 
                 type="email" 
-                className="w-full" 
-                placeholder="seu@email.com" 
-                defaultValue="rodrigomaciel.sousa@gmail.com"
+                className="w-full bg-[#0d121f] border-white/5 focus:border-primary/50 text-white rounded-xl py-3 px-4 transition-all" 
+                placeholder="seu@empresa.com.br" 
                 required
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-muted mb-1">Senha</label>
+              <label className="block text-[9px] font-black text-muted mb-1 uppercase tracking-[0.2em] ml-1">Senha de Acesso</label>
               <input 
                 type="password" 
-                className="w-full" 
+                className="w-full bg-[#0d121f] border-white/5 focus:border-primary/50 text-white rounded-xl py-3 px-4 transition-all" 
                 placeholder="••••••••" 
-                defaultValue="password"
                 required
               />
             </div>
-            <button type="submit" className="w-full py-3 bg-primary hover:bg-primary/80 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20">
+            <button type="submit" className="w-full py-4 bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-widest rounded-xl transition-all shadow-xl shadow-primary/20 text-xs mt-2 italic flex items-center justify-center gap-2">
               Entrar no Sistema
+              <ArrowRight size={14} />
             </button>
 
-            <div className="text-center">
+            <div className="text-center pt-2">
               <button 
                 type="button" 
                 onClick={handleResetPassword}
-                className="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest"
+                className="text-[9px] font-black text-primary hover:text-white transition-colors uppercase tracking-[0.2em] italic"
               >
                 Esqueci minha senha / Primeiro Acesso
               </button>
             </div>
 
-            <div className="relative my-6">
+            <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-line" />
+                <div className="w-full border-t border-white/5"></div>
               </div>
-              <div className="relative flex justify-center text-[10px] uppercase">
-                <span className="bg-panel px-4 text-muted font-bold tracking-widest leading-none py-1">Ou entrar com</span>
+              <div className="relative flex justify-center text-[9px] uppercase font-black tracking-widest">
+                <span className="bg-[#1a2333] px-4 text-muted/60">Ou entrar com</span>
               </div>
             </div>
 
             <button 
               type="button"
               onClick={handleGoogleLogin} 
-              className="w-full py-3 bg-white/5 hover:bg-white/10 border border-line rounded-xl transition-all flex items-center justify-center gap-3 font-bold text-xs uppercase tracking-widest"
+              className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-3 text-[10px] italic"
             >
-              <Sparkles size={18} className="text-primary" /> Google Account
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Google Account
             </button>
           </form>
-          <p className="mt-6 text-center text-[10px] text-muted uppercase tracking-widest">
-            Acesso Restrito • v1.0.0
-          </p>
+
+          <div className="mt-10 pt-8 border-t border-white/5 text-center flex flex-col items-center gap-6">
+            <button 
+              type="button"
+              onClick={onGoBack}
+              className="group flex flex-col items-center gap-3"
+            >
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/5 group-hover:border-primary/30 transition-all shadow-xl">
+                <ArrowLeft size={18} className="text-muted group-hover:text-primary" />
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted group-hover:text-white transition-colors italic">
+                  Voltar ao Portal Tríade
+                </span>
+                <span className="text-[8px] text-muted/40 uppercase font-bold tracking-widest mt-1">Retornar à página inicial</span>
+              </div>
+            </button>
+            
+            <p className="text-[9px] text-muted/60 uppercase tracking-[0.4em] font-black">
+              Acesso Restrito • v1.0.0
+            </p>
+          </div>
         </motion.div>
       </div>
     );
@@ -3311,12 +3934,12 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
         <div className="p-6 flex flex-col gap-6 border-b border-line">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/40">
-              <Package className="text-white" size={28} />
+              <Package className="text-black" size={28} />
             </div>
             {!isSidebarCollapsed && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col">
-                <h1 className="font-black text-3xl leading-none tracking-tighter uppercase text-white italic">Asset</h1>
-                <span className="text-[9px] text-primary uppercase tracking-[0.3em] font-black italic -mt-0.5 ml-0.5">Manager Pro</span>
+                <h1 className="font-black text-3xl leading-none tracking-tighter uppercase text-white italic">Asset System</h1>
+                <span className="text-[9px] text-primary uppercase tracking-[0.3em] font-black italic -mt-0.5 ml-0.5">Enterprise Pro</span>
               </motion.div>
             )}
           </div>
@@ -9064,14 +9687,54 @@ function UsersManagementView({ users, companies, onAddUser, onUpdateRole, onUpda
 }
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'app'>('landing');
+  const [currentPage, setCurrentPage] = useState<'portal' | 'asset' | 'accounting' | 'app'>('portal');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#asset') setCurrentPage('asset');
+      else if (hash === '#accounting') setCurrentPage('accounting');
+      else if (hash === '#assetsystem' || hash === '#app') setCurrentPage('app');
+      else if (hash === '#portal' || !hash) setCurrentPage('portal');
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handlePageChange = (page: 'portal' | 'asset' | 'accounting' | 'app') => {
+    setCurrentPage(page);
+    const hash = page === 'app' ? '#assetsystem' : `#${page}`;
+    window.history.pushState(null, '', hash);
+  };
 
   return (
     <div className="min-h-screen">
-      {currentPage === 'landing' ? (
-        <LandingPage onEnterSystem={() => setCurrentPage('app')} />
-      ) : (
-        <InternalApp onGoBack={() => setCurrentPage('landing')} />
+      {currentPage === 'portal' && (
+        <Portal 
+          onSelectAsset={() => handlePageChange('asset')} 
+          onSelectAccounting={() => handlePageChange('accounting')} 
+          onEnterSystem={() => handlePageChange('app')}
+        />
+      )}
+      {currentPage === 'asset' && (
+        <LandingPage 
+          onEnterSystem={() => handlePageChange('app')} 
+          onSelectAccounting={() => handlePageChange('accounting')}
+          onSelectPortal={() => handlePageChange('portal')}
+        />
+      )}
+      {currentPage === 'accounting' && (
+        <AccountingLanding 
+          onBack={() => handlePageChange('portal')} 
+          onEnterSystem={() => handlePageChange('app')} 
+          onSelectAsset={() => handlePageChange('asset')}
+          onSelectPortal={() => handlePageChange('portal')}
+        />
+      )}
+      {currentPage === 'app' && (
+        <InternalApp onGoBack={() => handlePageChange('portal')} />
       )}
     </div>
   );
