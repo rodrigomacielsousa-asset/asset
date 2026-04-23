@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, User as FirebaseUser, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, User as FirebaseUser, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 import { getFirestore, doc, getDoc, collection, onSnapshot, query, setDoc, updateDoc, serverTimestamp, addDoc, deleteDoc, where, getDocs } from 'firebase/firestore';
 import { db, auth } from './lib/firebase';
 import { 
@@ -1828,7 +1828,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0b1220]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="font-extrabold text-2xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
+          <span className="font-extrabold text-4xl tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest text-muted">
           <a href="#about" className="hover:text-white transition-colors">SOBRE</a>
@@ -2262,7 +2262,7 @@ function LandingPage({ onEnterSystem }: { onEnterSystem: () => void }) {
       <footer className="py-12 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 opacity-50">
           <div className="flex items-center gap-4">
-            <span className="font-bold text-lg tracking-tighter uppercase whitespace-nowrap text-white">Asset <span className="text-primary">Solution</span></span>
+            <span className="font-bold text-2xl tracking-tighter uppercase whitespace-nowrap text-white">Asset <span className="text-primary">Solution</span></span>
           </div>
           <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-center">© 2024 - Asset Solution • CNPJ 46.141.266/0001-55 • Inteligência Patrimonial</p>
           <div className="flex gap-6 text-xs font-bold uppercase tracking-widest">
@@ -2481,6 +2481,21 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
         setLoginError("Erro ao tentar entrar. Tente novamente mais tarde.");
       }
       console.error(error);
+    }
+  };
+
+  const [resetEmailSent, setResetEmailSent] = useState(false);
+
+  const handleResetPassword = async () => {
+    const email = prompt("Digite seu e-mail para receber as instruções de senha:");
+    if (!email) return;
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setNotification({ message: 'E-mail de recuperação enviado! Confira sua caixa de entrada.', type: 'success' });
+      setTimeout(() => setNotification(null), 5000);
+    } catch (error: any) {
+      setNotification({ message: 'Erro ao enviar e-mail. Verifique se o e-mail está correto.', type: 'error' });
+      setTimeout(() => setNotification(null), 5000);
     }
   };
 
@@ -3009,8 +3024,8 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
               <Package className="text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-black text-white">Asset <span className="text-primary">Solution</span></h1>
-              <p className="text-xs text-muted">Gestão Inteligente de Ativos</p>
+              <h1 className="text-4xl font-black text-white tracking-tighter">Asset <span className="text-primary">Solution</span></h1>
+              <p className="text-sm text-muted mt-1 uppercase tracking-widest font-medium">Gestão Inteligente de Ativos</p>
             </div>
           </div>
 
@@ -3040,9 +3055,19 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
                 required
               />
             </div>
-            <button type="submit" className="w-full py-3 bg-primary hover:bg-primary/80 text-white font-bold rounded-xl transition-all">
+            <button type="submit" className="w-full py-3 bg-primary hover:bg-primary/80 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20">
               Entrar no Sistema
             </button>
+
+            <div className="text-center">
+              <button 
+                type="button" 
+                onClick={handleResetPassword}
+                className="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest"
+              >
+                Esqueci minha senha / Primeiro Acesso
+              </button>
+            </div>
 
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
@@ -3094,13 +3119,13 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
       )}>
         <div className="p-6 flex flex-col gap-6 border-b border-line">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
-              <Package className="text-white" size={24} />
+            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+              <Package className="text-white" size={28} />
             </div>
             {!isSidebarCollapsed && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <h1 className="font-extrabold text-lg leading-none tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></h1>
-                <span className="text-[9px] text-muted uppercase tracking-tighter font-bold">Enterprise Pro</span>
+                <h1 className="font-extrabold text-xl leading-none tracking-tighter uppercase text-white">Asset <span className="text-primary">Solution</span></h1>
+                <span className="text-[10px] text-muted uppercase tracking-tighter font-bold">Enterprise Pro</span>
               </motion.div>
             )}
           </div>
@@ -3513,6 +3538,7 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
                     await setDoc(doc(db, 'users', tempId), {
                       ...newUser,
                       id: tempId,
+                      uid: tempId, // Adding uid to satisfy isValidUser check
                       avatar: `https://ui-avatars.com/api/?name=${newUser.name}&background=random`,
                       createdAt: serverTimestamp()
                     });
