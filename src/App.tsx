@@ -1793,7 +1793,7 @@ function Portal({
           desc="Soluções estratégicas para controle, organização, valorização e governança do patrimônio empresarial, apoiando a tomada de decisão e a eficiência operacional."
           icon={<Package size={44} />}
           onClick={onSelectAsset}
-          color="amber"
+          color="blue"
         />
         <PortalCard 
           label="SOFTWARE"
@@ -1811,7 +1811,7 @@ function Portal({
           desc="Modelo de contabilidade CaaS estratégica orientado a dados, conformidade e informação gerencial, atuando como base de apoio contínuo à gestão e ao desempenho do negócio."
           icon={<Briefcase size={44} />}
           onClick={onSelectAccounting}
-          color="blue"
+          color="amber"
         />
       </div>
 
@@ -1863,22 +1863,25 @@ function PortalCard({ title, subtitle, badge, desc, icon, onClick, color, isExte
   };
 
   return (
-    <motion.button
+    <motion.div
       whileHover={{ y: -12 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
+      role="button"
       className={cn(
-        "bg-white/[0.03] border border-white/5 rounded-[48px] p-10 md:p-12 text-left transition-all group flex flex-col gap-8 h-full shadow-2xl relative overflow-hidden backdrop-blur-sm",
+        "bg-white/[0.03] border border-white/5 rounded-[32px] md:rounded-[48px] p-8 md:p-12 text-left transition-all group flex flex-col gap-6 md:gap-8 shadow-2xl relative cursor-pointer",
         colors[color]
       )}
     >
       <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-white/5 to-transparent blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       
-      <div className="flex justify-between items-start">
-        <div className={cn("w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl", iconColors[color])}>
-          {icon}
+      <div className="flex justify-between items-start shrink-0">
+        <div className={cn("w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl", iconColors[color])}>
+          <div className="scale-75 md:scale-100">
+            {icon}
+          </div>
         </div>
-        <span className={cn("text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border opacity-40 group-hover:opacity-100 transition-opacity", 
+        <span className={cn("text-[8px] md:text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border opacity-60 group-hover:opacity-100 transition-opacity", 
           color === 'amber' ? 'border-amber-500/30 text-amber-500' :
           color === 'blue' ? 'border-blue-500/30 text-blue-500' :
           'border-purple-500/30 text-purple-500'
@@ -1887,40 +1890,40 @@ function PortalCard({ title, subtitle, badge, desc, icon, onClick, color, isExte
         </span>
       </div>
       
-      <div className="relative z-10 flex flex-col gap-2">
+      <div className="relative z-10 flex flex-col gap-3 shrink-0">
         <div className="flex items-center gap-3 flex-wrap">
-          <h3 className="text-3xl font-black tracking-tighter uppercase transition-colors flex items-center gap-2 italic leading-none text-white">
+          <h3 className="text-2xl md:text-3xl font-black tracking-tight uppercase transition-colors flex items-center gap-2 italic leading-tight text-white">
             {title}
             {isExternal && <ArrowUpRight size={20} className="text-muted group-hover:text-white transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1" />}
           </h3>
           {badge && (
-            <span className="text-[10px] font-black uppercase tracking-widest bg-white/10 text-white px-3 py-1 rounded-full italic">
+            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest bg-white/10 text-white px-3 py-1 rounded-full italic">
               {badge}
             </span>
           )}
         </div>
-        <p className="text-primary font-black text-[11px] leading-tight uppercase tracking-wider italic">
+        <p className="text-primary font-black text-[10px] md:text-[11px] leading-snug uppercase tracking-wider italic">
           {subtitle}
         </p>
       </div>
 
-      <div className="relative z-10">
-        <p className="text-muted font-medium text-xs md:text-sm leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity">
+      <div className="relative z-10 block">
+        <p className="text-muted font-medium text-xs md:text-sm leading-relaxed italic opacity-90 group-hover:opacity-100 transition-opacity whitespace-normal break-words">
           {desc}
         </p>
       </div>
 
-      <div className="mt-auto pt-8">
-        <div className={cn("w-12 h-1.5 bg-white/5 rounded-full group-hover:w-full transition-all duration-700 ease-in-out",
-          color === 'amber' ? 'group-hover:bg-amber-500' :
-          color === 'blue' ? 'group-hover:bg-blue-500' :
-          'group-hover:bg-purple-500'
+      <div className="mt-auto pt-8 shrink-0">
+        <div className={cn(
+          "w-12 h-0.5 transition-all duration-500",
+          color === 'amber' ? 'bg-amber-500' :
+          color === 'blue' ? 'bg-blue-500' :
+          'bg-purple-500'
         )} />
       </div>
-    </motion.button>
+    </motion.div>
   );
 }
-
 function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPortal }: any) {
   const [modalContent, setModalContent] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
