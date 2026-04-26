@@ -1775,7 +1775,7 @@ function Portal({
         className="text-center mb-16 relative z-10 max-w-5xl px-4"
       >
         <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6 italic">
-          TRÍADE <span className="text-primary italic">GROUP</span>
+          ASSET <span className="text-primary italic">GROUP</span>
         </h1>
         <p className="text-muted text-sm md:text-lg font-bold uppercase tracking-widest opacity-80 leading-relaxed italic max-w-3xl mx-auto mb-4">
           Ecossistema de soluções integradas em inteligência patrimonial, contabilidade estratégica e tecnologia corporativa, com atuação multissetorial, focado em controle, governança e crescimento sustentável.
@@ -1843,7 +1843,7 @@ function Portal({
         transition={{ delay: 1.5 }}
         className="mt-20 text-[10px] uppercase font-black tracking-[0.4em] text-muted/10 italic"
       >
-        © 2026 – Tríade Group – Todos os direitos reservados.
+        © 2026 – ASSET GROUP – Todos os direitos reservados.
       </motion.div>
     </div>
   );
@@ -2387,7 +2387,7 @@ function TermsModal({ content, onClose }: { content: string, onClose: () => void
         <div className="prose prose-invert prose-lg text-muted/80 leading-relaxed space-y-10 font-medium italic">
           {content === 'privacy' ? (
             <>
-              <p className="text-xl">O <span className="text-white">TRÍADE GROUP</span> e suas verticais de negócio (Asset Solution, Accounting, Asscon) estabelecem este compromisso com a proteção integral de dados.</p>
+              <p className="text-xl">O <span className="text-white">ASSET GROUP</span> e suas verticais de negócio (Asset Solution, Accounting, Asscon) estabelecem este compromisso com a proteção integral de dados.</p>
               <div className="space-y-6">
                 <p><strong>1. Coleta Ética:</strong> Capturamos informações estritamente necessárias para a prestação de serviços de alta performance em inteligência patrimonial e fiscal.</p>
                 <p><strong>2. Rastreabilidade LGPD:</strong> Nossa infraestrutura é moldada pelo princípio de Privacy by Design, garantindo transparência total e conformidade com a regulamentação brasileira.</p>
@@ -2396,7 +2396,7 @@ function TermsModal({ content, onClose }: { content: string, onClose: () => void
             </>
           ) : (
             <>
-              <p className="text-xl">As disposições abaixo regem a relação comercial e técnica entre o <span className="text-white">TRÍADE GROUP</span> e seus parceiros corporativos.</p>
+              <p className="text-xl">As disposições abaixo regem a relação comercial e técnica entre o <span className="text-white">ASSET GROUP</span> e seus parceiros corporativos.</p>
               <div className="space-y-6">
                 <p><strong>1. Propriedade Intelectual:</strong> Metodologias, matrizes de cálculo e softwares proprietary como o Asset System são ativos intelectuais protegidos internacionalmente.</p>
                 <p><strong>2. Escopo de Entrega:</strong> Nossos laudos e consultorias são assinados por responsáveis técnicos qualificados, garantindo validade jurídica e contábil conforme as IFRS.</p>
@@ -3908,7 +3908,7 @@ function InternalApp({ onGoBack }: { onGoBack: () => void }) {
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted group-hover:text-white transition-colors italic">
-                  Voltar ao Portal Tríade
+                  Voltar ao Portal ASSET GROUP
                 </span>
                 <span className="text-[8px] text-muted/40 uppercase font-bold tracking-widest mt-1">Retornar à página inicial</span>
               </div>
