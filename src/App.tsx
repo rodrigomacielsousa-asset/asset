@@ -1981,10 +1981,12 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
               <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 italic">
                 Modern Accounting Infrastructure
               </span>
-              <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[0.95] tracking-tighter uppercase italic">
-                <span className="text-white">A contabilidade</span> <br /> 
-                <span className="text-white">da sua empresa,</span> <br /> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">reestruturada como plataforma.</span>
+              <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[0.9] tracking-tighter uppercase italic">
+                <span className="text-white">A CONTABILIDADE</span> <br /> 
+                <span className="text-white">DA SUA EMPRESA</span> <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">RESTRUTURADA</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">COMO</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">PLATAFORMA</span>
               </h1>
               <p className="text-muted text-lg mb-10 max-w-xl leading-relaxed font-medium italic">
                 Contabilidade como Serviço (CaaS) para empresas que precisam de controle, escala e decisões baseadas em dados — sem depender de estruturas internas pesadas.
@@ -2011,17 +2013,72 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[64px] border border-white/10 p-1 bg-[#0d1627] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden group">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454165833767-1316b321d021?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-20 group-hover:scale-110 transition-transform duration-[2000ms] ease-out" />
                 <div className="relative h-full flex flex-col p-8 justify-center gap-6">
-                  {/* FLOATING INFO BALLOON */}
+                  {/* FLOATING PIE CHART */}
                   <motion.div
-                    animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
+                    animate={{ y: [0, -15, 0], rotate: [0, 2, 0] }}
                     transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                    className="absolute top-12 right-12 z-30 p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl"
+                    className="absolute top-12 right-12 z-40 p-6 bg-[#0a0a0a]/80 backdrop-blur-3xl border border-white/10 rounded-[48px] shadow-2xl flex flex-col items-center justify-center gap-4 group/widget hover:border-primary/50 transition-colors"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
-                      <span className="text-[9px] font-black text-white uppercase tracking-widest">Processamento Ativo</span>
+                    <div className="relative w-24 h-24">
+                      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                        {/* Background */}
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="42"
+                          fill="transparent"
+                          stroke="rgba(255,255,255,0.05)"
+                          strokeWidth="10"
+                        />
+                        {/* Segment 1: Blue */}
+                        <motion.circle
+                          cx="50"
+                          cy="50"
+                          r="42"
+                          fill="transparent"
+                          stroke="#3b82f6"
+                          strokeWidth="12"
+                          strokeDasharray="263.89"
+                          initial={{ strokeDashoffset: 263.89 }}
+                          animate={{ strokeDashoffset: 263.89 * (1 - 0.65) }}
+                          transition={{ duration: 2, ease: "circOut", delay: 1 }}
+                          strokeLinecap="round"
+                        />
+                        {/* Segment 2: Purple */}
+                        <motion.circle
+                          cx="50"
+                          cy="50"
+                          r="42"
+                          fill="transparent"
+                          stroke="#a78bfa"
+                          strokeWidth="12"
+                          strokeDasharray="263.89"
+                          initial={{ strokeDashoffset: 263.89 }}
+                          animate={{ strokeDashoffset: 263.89 * (1 - 0.25) }}
+                          style={{ rotate: '234deg', transformOrigin: 'center' }}
+                          transition={{ duration: 2, ease: "circOut", delay: 1.5 }}
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <motion.span 
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 2 }}
+                          className="text-lg font-black text-white tracking-tighter"
+                        >
+                          90%
+                        </motion.span>
+                        <span className="text-[7px] font-black text-muted uppercase tracking-widest">Global</span>
+                      </div>
                     </div>
-                    <div className="mt-1 text-lg font-black text-primary">99.8%</div>
+                    <div className="text-center">
+                      <div className="flex items-center gap-2 justify-center mb-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[9px] font-bold text-white uppercase tracking-widest">Active Data</span>
+                      </div>
+                      <div className="text-[10px] font-black text-primary uppercase italic tracking-tighter">Asset Intelligence</div>
+                    </div>
                   </motion.div>
 
                   {/* ESCALABILIDADE */}
@@ -2172,19 +2229,20 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
         </div>
       </section>
 
-      {/* Beneficiaries Banner */}
-      <section className="py-24 px-6 bg-white/[0.02] border-y border-white/5 overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      {/* Beneficiaries Banner - Re-styled as Horizontal Blue Stripe */}
+      <section className="py-20 px-6 bg-primary relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
           <div className="shrink-0">
-             <h3 className="text-2xl font-black uppercase italic tracking-widest text-white/40 leading-tight">
+             <h3 className="text-2xl font-black uppercase italic tracking-widest text-white leading-tight">
                Empresas que se <br /> beneficiam do <br /> modelo CaaS
              </h3>
           </div>
           <div className="flex flex-wrap gap-x-12 gap-y-8 items-center justify-center lg:justify-start">
             {['Grupos empresariais', 'Holdings', 'Empresas em crescimento', 'Operações multisocietárias', 'Negócios que exigem controle e conformidade'].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-4">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <span className="text-sm font-black uppercase tracking-widest text-muted italic whitespace-nowrap">{item}</span>
+              <div key={idx} className="flex items-center gap-4 text-white">
+                <div className="w-2 h-2 rounded-full bg-white/60" />
+                <span className="text-sm font-black uppercase tracking-widest italic whitespace-nowrap">{item}</span>
               </div>
             ))}
           </div>
@@ -3187,7 +3245,7 @@ function LandingPage({ onEnterSystem, onSelectAccounting, onSelectPortal }: any)
         </section>
 
       {/* CTA Final */}
-      <section className="py-32 px-6 bg-primary relative overflow-hidden">
+      <section className="py-20 px-6 bg-primary relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] -mr-48 -mt-48" />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <h2 className="text-3xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase leading-[1.1]">
