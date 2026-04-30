@@ -1951,28 +1951,25 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
             </div>
           </button>
           
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#about" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Inovação</a>
-            <span className="text-white/10 text-xs">|</span>
-            <a href="#caas" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Contabilidade</a>
-            <span className="text-white/10 text-xs">|</span>
-            <a href="#caas" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Como Funciona</a>
-            <span className="text-white/10 text-xs">|</span>
-            <a href="#faq" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Dúvidas</a>
-            <span className="text-white/10 text-xs">|</span>
-            <a href="#contact" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-primary transition-colors italic">Contato</a>
+          <div className="hidden lg:flex items-center gap-12 text-[11px] font-black uppercase tracking-[0.2em] text-muted italic">
+            <a href="#about" className="hover:text-primary transition-colors">Sobre Nós</a>
+            <a href="#caas" className="hover:text-primary transition-colors">Contabilidade</a>
+            <a href="#faq" className="hover:text-primary transition-colors">Dúvidas</a>
+            <a href="#contact" className="hover:text-primary transition-colors">Contato</a>
+          </div>
+          <div className="flex items-center gap-4">
             <button 
               onClick={onEnterSystem}
-              className="ml-6 px-6 py-3 bg-primary text-black font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all text-[10px] shadow-2xl shadow-primary/30 italic"
+              className="px-8 py-4 bg-primary text-black rounded-2xl font-black text-[11px] transition-all uppercase tracking-widest flex items-center gap-2 shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 italic"
             >
-              Acessar Sistema
+              ACESSAR SISTEMA <ArrowUpRight size={14} />
             </button>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-60 pb-40 px-6 relative overflow-hidden">
+      <section className="pt-40 pb-20 px-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[160px] -mr-96 -mt-96" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -1990,11 +1987,17 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] via-[#a78bfa] to-[#c084fc]">reestruturada como plataforma.</span>
               </h1>
               <p className="text-muted text-lg mb-10 max-w-xl leading-relaxed font-medium italic">
-                Accounting as a Service (CaaS) combina contabilidade especializada, processos estruturados e tecnologia própria para transformar conformidade fiscal em inteligência de gestão.
+                Contabilidade como Serviço (CaaS) para empresas que precisam de controle, escala e decisões baseadas em dados — sem depender de estruturas internas pesadas.
               </p>
-              <div className="flex flex-wrap gap-8">
-                <a href="#contact" className="px-12 py-6 bg-white text-black font-black uppercase tracking-widest rounded-3xl hover:bg-primary hover:text-white transition-all text-xs shadow-2xl shadow-white/5 italic">
-                  Solicitar proposta CaaS
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <button 
+                  onClick={onEnterSystem}
+                  className="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all text-center text-sm shadow-xl italic"
+                >
+                  ACESSAR SISTEMA
+                </button>
+                <a href="#contact" className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white flex items-center justify-center font-black uppercase tracking-widest rounded-2xl hover:bg-white/5 transition-all text-sm italic">
+                  SOLICITAR PROPOSTA CAAS
                 </a>
               </div>
             </motion.div>
@@ -2008,44 +2011,69 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[64px] border border-white/10 p-1 bg-[#0d1627] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden group">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454165833767-1316b321d021?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-20 group-hover:scale-110 transition-transform duration-[2000ms] ease-out" />
                 <div className="relative h-full flex flex-col p-8 justify-center gap-6">
+                  {/* FLOATING INFO BALLOON */}
+                  <motion.div
+                    animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                    className="absolute top-12 right-12 z-30 p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                      <span className="text-[9px] font-black text-white uppercase tracking-widest">Processamento Ativo</span>
+                    </div>
+                    <div className="mt-1 text-lg font-black text-primary">99.8%</div>
+                  </motion.div>
+
                   {/* ESCALABILIDADE */}
                   <motion.div 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                    className="p-6 bg-white/[0.03] backdrop-blur-xl rounded-[32px] border border-white/10 shadow-2xl relative overflow-hidden group/card max-w-[280px]"
+                    animate={{ y: [0, -12, 0], scale: [1, 1.02, 1] }}
+                    transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                    className="p-7 bg-white/[0.04] backdrop-blur-2xl rounded-[36px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group/card max-w-[290px] hover:border-primary/40 transition-colors"
                   >
                     <motion.div 
                       animate={{ x: ['-200%', '200%'] }} 
-                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-20deg]"
+                      transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-25deg]"
                     />
-                    <TrendingUp className="text-primary mb-3" size={28} />
-                    <h3 className="text-lg font-black uppercase italic mb-1 tracking-tighter text-white">Escalabilidade</h3>
-                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Sua estrutura contábil cresce junto com a operação, sem necessidade de ampliar equipe.</p>
+                    <TrendingUp className="text-primary mb-4" size={32} />
+                    <h3 className="text-xl font-black uppercase italic mb-2 tracking-tighter text-white">Escalabilidade</h3>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest leading-relaxed">sem aumento de estrutura interna ou dependência de pessoas-chave</p>
                   </motion.div>
 
                   {/* REAL-TIME */}
                   <motion.div 
-                    animate={{ x: [0, 8, 0] }}
-                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
-                    className="p-6 bg-primary/10 backdrop-blur-xl rounded-[32px] border border-primary/20 self-end max-w-[260px] shadow-2xl relative translate-x-4 overflow-hidden group/card"
+                    animate={{ x: [0, 10, 0], filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"] }}
+                    transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
+                    className="p-7 bg-primary/15 backdrop-blur-2xl rounded-[36px] border border-primary/30 self-end max-w-[270px] shadow-[0_20px_50px_rgba(167,139,250,0.2)] relative translate-x-4 overflow-hidden group/card hover:border-primary transition-colors"
                   >
-                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-pulse z-10 text-white shadow-lg">
-                      <Zap size={14} />
+                    <div className="absolute -top-3 -right-3 w-10 h-10 bg-primary rounded-full flex items-center justify-center animate-pulse z-10 text-white shadow-xl">
+                      <Zap size={18} fill="currentColor" />
                     </div>
-                    <h3 className="text-lg font-black uppercase italic mb-1 tracking-tighter text-white">Real-Time</h3>
-                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Indicadores consolidados e atualizados em D+1, acessíveis de forma segura.</p>
+                    <h3 className="text-xl font-black uppercase italic mb-2 tracking-tighter text-white">Real-Time</h3>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest leading-relaxed mb-4">indicadores confiáveis para tomada de decisão, com atualização contínua</p>
+                    
+                    {/* MINI GRAPH PULSE */}
+                    <div className="flex items-end gap-1 h-8">
+                      {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{ height: [`${h}%`, `${h+10}%`, `${h}%`] }}
+                          transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.1 }}
+                          className="flex-1 bg-white/20 rounded-t-sm"
+                        />
+                      ))}
+                    </div>
                   </motion.div>
                   
                   {/* ESPECIALISTAS */}
                   <motion.div 
-                    animate={{ y: [0, 8, 0], rotate: [-0.5, 0.5, -0.5] }}
-                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-                    className="p-6 bg-white/[0.03] backdrop-blur-xl rounded-[32px] border border-white/10 shadow-2xl absolute bottom-8 left-8 max-w-[240px] overflow-hidden group/card z-20"
+                    animate={{ y: [0, 10, 0], rotate: [-1, 1, -1] }}
+                    transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1 }}
+                    className="p-7 bg-white/[0.04] backdrop-blur-2xl rounded-[36px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] absolute bottom-8 left-8 max-w-[250px] overflow-hidden group/card z-20 hover:border-purple-400/40 transition-colors"
                   >
-                    <Users className="text-purple-400 mb-3" size={24} />
-                    <h3 className="text-base font-black uppercase italic mb-1 tracking-tighter text-white">Especialistas</h3>
-                    <p className="text-[9px] text-muted font-bold uppercase tracking-widest leading-relaxed">Suporte técnico de contadores especialistas com visão estratégica contínua.</p>
+                    <Users className="text-purple-400 mb-4" size={28} />
+                    <h3 className="text-base font-black uppercase italic mb-2 tracking-tighter text-white">Especialistas</h3>
+                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest leading-relaxed">especialistas contábeis dedicados, com visão fiscal, societária e gerencial</p>
                   </motion.div>
                 </div>
               </div>
@@ -2054,20 +2082,62 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
         </div>
       </section>
 
-      {/* Intro CaaS */}
-      <section id="caas" className="py-40 px-6 bg-[#080e1a] relative">
+      {/* Sobre Nós */}
+      <section id="about" className="py-32 px-6 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-4xl">
-            <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Discovery phase</h2>
-            <h3 className="text-4xl md:text-7xl font-black mb-12 leading-tight italic uppercase tracking-tighter">O que é Contabilidade como Serviço (CaaS)?</h3>
-            <div className="space-y-8 text-muted text-xl leading-relaxed font-medium italic">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Sobre Nós</h2>
+              <h3 className="text-3xl md:text-5xl font-black mb-10 leading-tight italic uppercase tracking-tighter">O Ecossistema Asset</h3>
+              <div className="space-y-6 text-muted text-lg leading-relaxed font-medium italic">
+                <p>
+                  A <strong>Asset Accounting</strong> nasceu dentro do ecossistema ASSET GROUP para oferecer uma solução definitiva em contabilidade gerencial e societária. Entendemos que a contabilidade tradicional muitas vezes se limita à conformidade legal, ignorando o potencial estratégico que os dados contábeis possuem.
+                </p>
+                <p>
+                  Nossa missão é libertar os gestores do peso de manter estruturas contábeis reativas, substituindo-as por um modelo escalar, moderno e altamente especializado. Combinamos tecnologia de ponta com um time de especialistas que entende a linguagem dos negócios.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[40px] text-center">
+                <p className="text-4xl font-black text-primary mb-2">+15</p>
+                <p className="text-[10px] text-muted font-black uppercase tracking-widest italic leading-tight">Anos de Experiência</p>
+              </div>
+              <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[40px] text-center">
+                <p className="text-4xl font-black text-primary mb-2">100%</p>
+                <p className="text-[10px] text-muted font-black uppercase tracking-widest italic leading-tight">Foco em Dados</p>
+              </div>
+              <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[40px] text-center">
+                <p className="text-4xl font-black text-primary mb-2">D+1</p>
+                <p className="text-[10px] text-muted font-black uppercase tracking-widest italic leading-tight">Informação Atualizada</p>
+              </div>
+              <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[40px] text-center">
+                <p className="text-4xl font-black text-primary mb-2">CaaS</p>
+                <p className="text-[10px] text-muted font-black uppercase tracking-widest italic leading-tight">Contabilidade como Serviço</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro CaaS */}
+      <section id="caas" className="py-32 px-6 bg-[#080e1a] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-12">
+              <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Discovery phase</h2>
+              <h3 className="text-3xl md:text-5xl font-black mb-12 leading-tight italic uppercase tracking-tighter max-w-5xl">O que é Contabilidade como Serviço (CaaS)?</h3>
+            </div>
+            <div className="lg:col-span-7 space-y-8 text-muted text-xl leading-relaxed font-medium italic">
               <p>
                 Contabilidade como Serviço (CaaS) é um modelo moderno de prestação contábil que integra especialistas, processos padronizados e infraestrutura tecnológica em uma única plataforma.
               </p>
               <p>
                 Diferente da contabilidade tradicional, o CaaS opera de forma contínua, digital e estruturada, entregando informações contábeis, fiscais e financeiras integradas, com acesso remoto e alto nível de confiabilidade.
               </p>
-              <p className="text-white border-l-4 border-primary pl-10 py-4 bg-white/5 rounded-r-3xl">
+            </div>
+            <div className="lg:col-span-5 bg-white/[0.02] border-l-4 border-primary p-12 rounded-r-3xl">
+              <p className="text-white text-xl leading-relaxed font-black italic">
                 O modelo elimina a separação entre o operacional, o fiscal e o estratégico, permitindo que a contabilidade deixe de ser apenas uma obrigação legal e passe a apoiar ativamente a gestão empresarial.
               </p>
             </div>
@@ -2079,50 +2149,87 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
               className="p-16 bg-white/[0.02] border border-white/5 rounded-[64px] transition-all group shadow-2xl"
             >
               <h4 className="text-3xl font-black uppercase mb-8 italic text-white/20 group-hover:text-white transition-colors tracking-tighter">Contabilidade Tradicional</h4>
-              <p className="text-muted text-lg leading-relaxed italic font-medium">
-                Modelo baseado em processos manuais, troca de arquivos, planilhas e informações desconectadas. Entrega dados com atraso, baixa transparência, dependência de equipe interna e dificuldade para escalar operações sem aumento significativo de custos e riscos.
-              </p>
+              <ul className="space-y-4 text-muted text-lg leading-relaxed italic font-medium">
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-red-500/50 rounded-full" /> Visão atrasada do negócio</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-red-500/50 rounded-full" /> Dependência de arquivos e planilhas</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-red-500/50 rounded-full" /> Risco fiscal não percebido</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-red-500/50 rounded-full" /> Contabilidade reativa</li>
+              </ul>
             </motion.div>
             <motion.div 
               whileHover={{ y: -10 }}
               className="p-16 bg-primary/[0.03] border border-primary/10 rounded-[64px] transition-all group shadow-2xl shadow-primary/5"
             >
               <h4 className="text-3xl font-black uppercase mb-8 italic text-primary tracking-tighter">CaaS (Moderno)</h4>
-              <p className="text-muted text-lg leading-relaxed italic font-medium">
-                Modelo integrado, contínuo e orientado por dados. Processos automatizados, especialistas dedicados e informações consolidadas em ambiente seguro, com previsibilidade, escalabilidade e apoio à tomada de decisão.
-              </p>
+              <ul className="space-y-4 text-muted text-lg leading-relaxed italic font-medium">
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-primary/50 rounded-full" /> Visão integrada do negócio</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-primary/50 rounded-full" /> Dados confiáveis para decisão</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-primary/50 rounded-full" /> Processo contínuo e estruturado</li>
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-primary/50 rounded-full" /> Modelo escalável e sustentável</li>
+              </ul>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Beneficiaries Banner */}
+      <section className="py-24 px-6 bg-white/[0.02] border-y border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+          <div className="shrink-0">
+             <h3 className="text-2xl font-black uppercase italic tracking-widest text-white/40 leading-tight">
+               Empresas que se <br /> beneficiam do <br /> modelo CaaS
+             </h3>
+          </div>
+          <div className="flex flex-wrap gap-x-12 gap-y-8 items-center justify-center lg:justify-start">
+            {['Grupos empresariais', 'Holdings', 'Empresas em crescimento', 'Operações multisocietárias', 'Negócios que exigem controle e conformidade'].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-4">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-sm font-black uppercase tracking-widest text-muted italic whitespace-nowrap">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section id="faq" className="py-40 px-6">
+      <section id="faq" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-32">
+          <div className="text-center mb-24">
             <h2 className="text-[10px] text-primary font-black uppercase tracking-[0.4em] mb-8 italic opacity-50">Frequent inquiries</h2>
-            <h3 className="text-4xl md:text-7xl font-black mb-10 leading-tight italic uppercase tracking-tighter">Esclarecendo o Modelo</h3>
+            <h3 className="text-3xl md:text-5xl font-black mb-10 leading-tight italic uppercase tracking-tighter">Esclarecendo o Modelo</h3>
           </div>
           
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FAQItem 
               q="CaaS: como ajuda minha empresa?"
-              a="O CaaS reduz riscos, aumenta eficiência operacional e transforma dados contábeis em apoio real à gestão, melhorando a tomada de decisão e o controle do negócio."
+              a="O CaaS reduz riscos, aumenta eficiência operacional e transforma dados contábeis em apoio real à gestão, melhorando a tomada de decisão e o controle do negócio. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
             />
             <FAQItem 
               q="Quais serviços o CaaS oferece?"
-              a="Serviços contábeis completos, área fiscal, obrigações acessórias, relatórios gerenciais, dashboards financeiros e suporte técnico especializado."
+              a="Serviços contábeis completos, área fiscal, obrigações acessórias, relatórios gerenciais, dashboards financeiros e suporte técnico especializado. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
             />
             <FAQItem 
-              q="Custos em comparação ao modelo tradicional?"
-              a="Modelo previsível e escalável, geralmente mais eficiente que estruturas internas fragmentadas, reduzindo retrabalho e custos ocultos."
+              q="Esse modelo substitui o contador tradicional?"
+              a="Sim, o CaaS substitui integralmente a contabilidade tradicional, trazendo muito mais tecnologia, escala e visão estratégica. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
+            />
+            <FAQItem 
+              q="O CaaS serve para qual tipo de empresa?"
+              a="Ideal para grupos empresariais, holdings e empresas em crescimento que precisam de robustez e conformidade. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
+            />
+            <FAQItem 
+              q="Como é a transição para o modelo CaaS?"
+              a="Realizamos um diagnóstico completo e uma transição estruturada, garantindo que nenhum dado se perca e que o modelo comece a rodar com máxima eficiência. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
+            />
+            <FAQItem 
+              q="Minha empresa perde o controle com esse modelo?"
+              a="Pelo contrário, você ganha visibilidade total sobre os números e processos, eliminando a 'caixa preta' da contabilidade tradicional. Esse é um dos principais diferenciais do modelo CaaS operado pela Asset."
             />
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-40 px-6 bg-[#0b1220] relative border-t border-white/5">
+      <section id="contact" className="py-32 px-6 bg-[#0b1220] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-40">
             <div>
@@ -2242,19 +2349,17 @@ function AccountingLanding({ onBack, onEnterSystem, onSelectAsset, onSelectPorta
 
 function FAQItem({ q, a }: { q: string, a: string }) {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="border border-white/5 bg-white/[0.02] rounded-[32px] overflow-hidden shadow-2xl transition-all hover:bg-white/[0.04]">
+    <div className="bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden hover:bg-white/[0.04] transition-all">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-10 text-left group"
+        className="w-full p-6 text-left flex items-center justify-between gap-4"
       >
-        <span className="text-xl font-black uppercase tracking-tight group-hover:text-primary transition-colors italic leading-tight">{q}</span>
-        <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            className="text-primary p-3 bg-white/5 rounded-2xl group-hover:bg-primary group-hover:text-white transition-all shadow-lg"
-          >
-          <ChevronDown size={28} />
-        </motion.div>
+        <span className="text-sm font-black uppercase italic tracking-tight text-white leading-tight">{q}</span>
+        <div className={cn("shrink-0 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-transform", isOpen && "rotate-180")}>
+          <ChevronDown size={14} className="text-muted" />
+        </div>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -2262,9 +2367,10 @@ function FAQItem({ q, a }: { q: string, a: string }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "circOut" }}
+            transition={{ duration: 0.3, ease: "circOut" }}
+            className="overflow-hidden"
           >
-            <div className="px-10 pb-10 text-muted text-lg font-medium italic leading-relaxed pt-2">
+            <div className="p-6 pt-0 border-t border-white/5 text-muted text-xs md:text-[13px] font-medium italic leading-relaxed">
               {a}
             </div>
           </motion.div>
